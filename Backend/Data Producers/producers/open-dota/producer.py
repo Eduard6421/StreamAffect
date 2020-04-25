@@ -1,5 +1,5 @@
 import requests
-class OpenDotaProducer:
+class OpenDotaWrapper:
 
     def __init__(self,proxy_ip,proxy_port):
         super().__init__()
@@ -32,6 +32,6 @@ class OpenDotaProducer:
 proxy_ip = "94.130.179.24"
 proxy_port = "8020"
 
-producer = OpenDotaProducer(proxy_ip,proxy_port)
+producer = OpenDotaWrapper(proxy_ip,proxy_port)
 result = producer.get_public_matches_ids()
 print(result)
