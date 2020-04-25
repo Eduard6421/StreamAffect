@@ -1,4 +1,6 @@
 import requests
+import json 
+
 class OpenDotaWrapper:
 
     def __init__(self,proxy_ip,proxy_port):
@@ -29,9 +31,19 @@ class OpenDotaWrapper:
             }
         return response_json
 
+    def get_public_matches_data(self,match_ids):
+        match_ids = match_ids['match_ids']
+        matches = []
+        for idx,match_id in enumerate(match_ids):
+            matches.append(self.get_match(match_id))
+        
+        matches_json = json.dumps(matches)
+        return matches_json
+
 proxy_ip = "94.130.179.24"
 proxy_port = "8020"
 
 producer = OpenDotaWrapper(proxy_ip,proxy_port)
 result = producer.get_public_matches_ids()
+result = producer.get_public_matches_data(result)
 print(result)
