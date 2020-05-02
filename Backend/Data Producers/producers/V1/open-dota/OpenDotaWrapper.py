@@ -1,7 +1,10 @@
 import requests
-import json 
+import json
+import sys
+sys.path.append('../')
+from DataProducer import DataProducer
 
-class OpenDotaWrapper:
+class OpenDotaWrapper(DataProducer):
 
     def __init__(self,proxy_ip,proxy_port):
         super().__init__()
@@ -37,7 +40,7 @@ class OpenDotaWrapper:
         for idx,match_id in enumerate(match_ids):
             matches.append(self.get_match(match_id))
         
-        matches_json = json.dumps(matches)
+        matches_json = json.loads(json.dumps(matches))
         return matches_json
 
 proxy_ip = "94.130.179.24"
@@ -46,4 +49,4 @@ proxy_port = "8020"
 producer = OpenDotaWrapper(proxy_ip,proxy_port)
 result = producer.get_public_matches_ids()
 result = producer.get_public_matches_data(result)
-print(result)
+print(result[0])

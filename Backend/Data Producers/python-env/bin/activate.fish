@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/eduard/Private/Facultate/Master/Anul 1/Semestrul 2/Big Data/Dotano/Backend/Data Preprocessing/python-env"
+set -gx VIRTUAL_ENV "/home/eduard/Private/Facultate/Master/Anul 1/Semestrul 2/Big Data/Dotano/Backend/Data Producers/python-env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

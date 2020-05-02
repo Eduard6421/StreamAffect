@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/eduard/Private/Facultate/Master/Anul 1/Semestrul 2/Big Data/Dotano/Backend/Data Preprocessing/python-env"
+VIRTUAL_ENV="/home/eduard/Private/Facultate/Master/Anul 1/Semestrul 2/Big Data/Dotano/Backend/Data Producers/python-env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
