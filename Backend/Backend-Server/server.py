@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import random
 import string
 
+WEBHDFS_URL = 'http://84.117.81.51:9870/webhdfs/v1/dataset/'
+
 def randomString(stringLength=8):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
@@ -19,11 +21,16 @@ def get_random_image():
 
 
 def contribute_with_image(url,sentiment):
-    print(url)
-    print(sentiment)
+    #print(url)
+    #print(sentiment)
     response = requests.get(url, stream=True)
     with open(sentiment+ '_' + randomString() + '.jpg', 'wb') as out_file:
         shutil.copyfileobj(response.raw, out_file)
+    
+    response = requests.put(WEBHDFS_URL + 'imagine3.jpg',params = {'user.name': 'root','op':'CREATE','overwrite':'true'})
+    location = response.headers['location']
+        
+    # now we need to write this file to hdfs
 
 contribute_with_image('https://source.unsplash.com/random/416x416','sad')
 '''
