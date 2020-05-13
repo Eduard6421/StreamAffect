@@ -1,22 +1,22 @@
 import datetime
 import keras
-import numpy as np
 import tensorflow as tf
 import os
 from classification_models.keras import Classifiers
 from elephas.spark_model import SparkModel, load_spark_model
 from keras.backend import set_session
-from keras_preprocessing.image import img_to_array, load_img
 from pyspark.shell import spark
+import cv2 as cv
 
 vgg16, preprocess_input = Classifiers.get('vgg16')
 n_classes = 5
 
 
 def load_data(uri):
-    image = img_to_array(load_img(uri, target_size=(224, 224)))
-    image = np.expand_dims(image, axis=0)
-    return preprocess_input(image).reshape((224, 224, 3))
+    image = cv.imread(uri)
+    image = cv.resize(image, (224, 224))
+    im_rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+    return preprocess_input(im_rgb).reshape((224, 224, 3))
 
 
 emotions = {
@@ -48,17 +48,16 @@ base_model = vgg16(input_shape=(224, 224, 3), weights='imagenet', include_top=Fa
 x = keras.layers.GlobalAveragePooling2D()(base_model.output)
 output = keras.layers.Dense(n_classes, activation='softmax')(x)
 model = keras.models.Model(inputs=[base_model.input], outputs=[output])
-adam = keras.optimizers.Adam(lr=0.0001)
+adam = keras.optimizers.Adam(lr=0.00001)
 model.compile(optimizer=adam, metrics=['accuracy'], loss='sparse_categorical_crossentropy')
 print(model.summary())
 estimator = SparkModel(model, frequency='batch', mode='synchronous')
 
 # train
-estimator.fit(train_input, epochs=2, batch_size=32, verbose=2, validation_split=0.15)
+estimator.fit(train_input, epochs=10, batch_size=32, verbose=2, validation_split=0.15)
 
 # save_model
 file_name = "vgg16_" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-os.mkdir("./checkpoint/")
 filepath = "./checkpoint/" + file_name
 estimator.save(filepath)
 
