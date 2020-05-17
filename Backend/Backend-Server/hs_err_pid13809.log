@@ -1,0 +1,991 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007efea4e1ecd5, pid=13809, tid=0x00007efea4e13440
+#
+# JRE version: OpenJDK Runtime Environment (8.0_252-b09) (build 1.8.0_252-8u252-b09-1ubuntu1-b09)
+# Java VM: OpenJDK 64-Bit Server VM (25.252-b09 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  [libpthread.so.0+0xacd5]  __pthread_clockjoin_ex+0x255
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread is native thread
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 0 (SI_USER), sent from pid: 15826 (uid: 1000)
+
+Registers:
+RAX=0x00000000000000ca, RBX=0x00000000000000ca, RCX=0x00007efea4e1ecd7, RDX=0x000000000000361d
+RSP=0x00007fff4237b2b0, RBP=0x00007fff4237b358, RSI=0x0000000000000000, RDI=0x00007efea3d879d0
+R8 =0x0000000000000000, R9 =0x00007efea3d87700, R10=0x0000000000000000, R11=0x0000000000000246
+R12=0x000000000000361d, R13=0x00007efea3d879d0, R14=0x0000000000100000, R15=0x00007efea3d87700
+RIP=0x00007efea4e1ecd5, EFLAGS=0x0000000000000246, CSGSFS=0x002b000000000033, ERR=0x0000000000000000
+  TRAPNO=0x0000000000000000
+
+Top of Stack: (sp=0x00007fff4237b2b0)
+0x00007fff4237b2b0:   0000000000000000 00007fff4237b2e0
+0x00007fff4237b2c0:   0000000000000000 0000000000000000
+0x00007fff4237b2d0:   0000000000000000 0000000000000000
+0x00007fff4237b2e0:   00007efea4e1ea60 00007efea3d87d28
+0x00007fff4237b2f0:   0000000000000000 0000000000000000
+0x00007fff4237b300:   0000000000000002 d2fabcc6c642ff00
+0x00007fff4237b310:   ffffffffffffffff 00007efea5064360
+0x00007fff4237b320:   00007fff4237b3d0 00007fff4237b370
+0x00007fff4237b330:   00007fff4237b3f0 0000000000100000
+0x00007fff4237b340:   00005622654c4528 00007efea5069e55
+0x00007fff4237b350:   00007efea3d87700 0000000000000000
+0x00007fff4237b360:   00007efea5064360 00007fff4237b3f0
+0x00007fff4237b370:   0000000000000000 0000000000000000
+0x00007fff4237b380:   0000000000001000 0000000000000000
+0x00007fff4237b390:   0000000000100000 0000000000000000
+0x00007fff4237b3a0:   0000000000000000 d2fabcc6c642ff00
+0x00007fff4237b3b0:   00007fff4237b510 00007fff42380fa0
+0x00007fff4237b3c0:   0000000000000000 0000000000000001
+0x00007fff4237b3d0:   00007fff4237b490 00007efea506600e
+0x00007fff4237b3e0:   0000000100000000 00007fff4237b3f0
+0x00007fff4237b3f0:   0000000000000001 00005622654c4528
+0x00007fff4237b400:   0000000000000001 00007fff42380fa0
+0x00007fff4237b410:   00007efea4766730 00007efea47666e0
+0x00007fff4237b420:   00007efea4766980 0000000000000000
+0x00007fff4237b430:   0000000000000000 0000000000000000
+0x00007fff4237b440:   0000000000000000 0000000000000000
+0x00007fff4237b450:   00007fff42380fa0 d2fabcc6c642ff00
+0x00007fff4237b460:   0000000000000001 0000000000000001
+0x00007fff4237b470:   00007fff42380fa0 00005622654c4528
+0x00007fff4237b480:   0000000000000001 00005622654c4520
+0x00007fff4237b490:   00007fff4237f590 00007efea5067492
+0x00007fff4237b4a0:   0000000000000000 00007efea506745f 
+
+Instructions: (pc=0x00007efea4e1ecd5)
+0x00007efea4e1ecb5:   00 00 00 bb ca 00 00 00 eb 20 90 e8 1b 93 00 00
+0x00007efea4e1ecc5:   45 31 d2 44 89 e2 31 f6 41 89 c0 4c 89 ef 89 d8
+0x00007efea4e1ecd5:   0f 05 44 89 c7 e8 61 93 00 00 45 8b 65 00 45 85
+0x00007efea4e1ece5:   e4 75 d8 eb b6 66 0f 1f 44 00 00 4c 8b 3c 24 41 
+
+Register to memory mapping:
+
+RAX=0x00000000000000ca is an unknown value
+RBX=0x00000000000000ca is an unknown value
+RCX=0x00007efea4e1ecd7: <offset 0xacd7> in /lib/x86_64-linux-gnu/libpthread.so.0 at 0x00007efea4e14000
+RDX=0x000000000000361d is an unknown value
+RSP=0x00007fff4237b2b0 is an unknown value
+RBP=0x00007fff4237b358 is an unknown value
+RSI=0x0000000000000000 is an unknown value
+RDI=0x00007efea3d879d0 is pointing into the stack for thread: 0x00007efe9c016000
+R8 =0x0000000000000000 is an unknown value
+R9 =0x00007efea3d87700 is pointing into the stack for thread: 0x00007efe9c016000
+R10=0x0000000000000000 is an unknown value
+R11=0x0000000000000246 is an unknown value
+R12=0x000000000000361d is an unknown value
+R13=0x00007efea3d879d0 is pointing into the stack for thread: 0x00007efe9c016000
+R14=0x0000000000100000 is an unknown value
+R15=0x00007efea3d87700 is pointing into the stack for thread: 0x00007efe9c016000
+
+
+Stack: [0x00007fff42282000,0x00007fff42382000],  sp=0x00007fff4237b2b0,  free space=996k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libpthread.so.0+0xacd5]  __pthread_clockjoin_ex+0x255
+
+
+---------------  P R O C E S S  ---------------
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ PSYoungGen      total 36352K, used 10508K [0x00000000eab00000, 0x00000000ed480000, 0x0000000100000000)
+  eden space 31232K, 19% used [0x00000000eab00000,0x00000000eb0cf0a8,0x00000000ec980000)
+  from space 5120K, 89% used [0x00000000eca00000,0x00000000ece74010,0x00000000ecf00000)
+  to   space 5632K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed480000)
+ ParOldGen       total 84992K, used 96K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0018010,0x00000000c5300000)
+ Metaspace       used 17482K, capacity 17636K, committed 17920K, reserved 1064960K
+  class space    used 2472K, capacity 2534K, committed 2560K, reserved 1048576K
+
+Card table byte_map: [0x00007efea3663000,0x00007efea3864000] byte_map_base: 0x00007efea3063000
+
+Marking Bits: (ParMarkBitMap*) 0x00007efea4df53c0
+ Begin Bits: [0x00007efea1109000, 0x00007efea2109000)
+ End Bits:   [0x00007efea2109000, 0x00007efea3109000)
+
+Polling page: 0x00007efea50a0000
+
+CodeCache: size=245760Kb used=4533Kb max_used=4533Kb free=241226Kb
+ bounds [0x00007efe8d000000, 0x00007efe8d470000, 0x00007efe9c000000]
+ total_blobs=1685 nmethods=1308 adapters=291
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 1863,714 Thread 0x00007efe9c0c9000 1303       3       java.util.concurrent.locks.ReentrantLock$Sync::isHeldExclusively (16 bytes)
+Event: 1863,714 Thread 0x00007efe9c0c9000 nmethod 1303 0x00007efe8d4661d0 code [0x00007efe8d466340, 0x00007efe8d466590]
+Event: 1893,714 Thread 0x00007efe9c0c9000 1304       3       java.util.concurrent.ThreadPoolExecutor::runStateOf (5 bytes)
+Event: 1893,714 Thread 0x00007efe9c0c9000 nmethod 1304 0x00007efe8d465ed0 code [0x00007efe8d466020, 0x00007efe8d466150]
+Event: 2583,714 Thread 0x00007efe9c0c9000 1305       3       java.util.concurrent.ScheduledThreadPoolExecutor::canRunInCurrentRunState (20 bytes)
+Event: 2583,714 Thread 0x00007efe9c0c9000 nmethod 1305 0x00007efe8d46ef90 code [0x00007efe8d46f100, 0x00007efe8d46f550]
+Event: 2583,714 Thread 0x00007efe9c0c9000 1306       3       java.util.concurrent.ThreadPoolExecutor::isRunningOrShutdown (31 bytes)
+Event: 2583,715 Thread 0x00007efe9c0c9000 nmethod 1306 0x00007efe8d46f690 code [0x00007efe8d46f800, 0x00007efe8d46fb30]
+Event: 3723,714 Thread 0x00007efe9c0c9000 1308       3       java.util.concurrent.ThreadPoolExecutor::workerCountOf (5 bytes)
+Event: 3723,714 Thread 0x00007efe9c0c9000 nmethod 1308 0x00007efe8d46fc10 code [0x00007efe8d46fd60, 0x00007efe8d46fe90]
+
+GC Heap History (10 events):
+Event: 0,745 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 36864K, used 31744K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 100% used [0x00000000eab00000,0x00000000eca00000,0x00000000eca00000)
+  from space 5120K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed400000)
+  to   space 5120K, 0% used [0x00000000eca00000,0x00000000eca00000,0x00000000ecf00000)
+ ParOldGen       total 84992K, used 0K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c5300000)
+ Metaspace       used 5535K, capacity 6796K, committed 7040K, reserved 1056768K
+  class space    used 769K, capacity 840K, committed 896K, reserved 1048576K
+Event: 0,748 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 36864K, used 3597K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000eca00000)
+  from space 5120K, 70% used [0x00000000eca00000,0x00000000ecd83560,0x00000000ecf00000)
+  to   space 5120K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed400000)
+ ParOldGen       total 84992K, used 8K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0002000,0x00000000c5300000)
+ Metaspace       used 5535K, capacity 6796K, committed 7040K, reserved 1056768K
+  class space    used 769K, capacity 840K, committed 896K, reserved 1048576K
+}
+Event: 1,696 GC heap before
+{Heap before GC invocations=2 (full 0):
+ PSYoungGen      total 36864K, used 35341K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 100% used [0x00000000eab00000,0x00000000eca00000,0x00000000eca00000)
+  from space 5120K, 70% used [0x00000000eca00000,0x00000000ecd83560,0x00000000ecf00000)
+  to   space 5120K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed400000)
+ ParOldGen       total 84992K, used 8K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0002000,0x00000000c5300000)
+ Metaspace       used 9469K, capacity 9560K, committed 9856K, reserved 1058816K
+  class space    used 1328K, capacity 1360K, committed 1408K, reserved 1048576K
+Event: 1,702 GC heap after
+Heap after GC invocations=2 (full 0):
+ PSYoungGen      total 36864K, used 3875K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000eca00000)
+  from space 5120K, 75% used [0x00000000ecf00000,0x00000000ed2c8fa0,0x00000000ed400000)
+  to   space 5120K, 0% used [0x00000000eca00000,0x00000000eca00000,0x00000000ecf00000)
+ ParOldGen       total 84992K, used 8K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0002000,0x00000000c5300000)
+ Metaspace       used 9469K, capacity 9560K, committed 9856K, reserved 1058816K
+  class space    used 1328K, capacity 1360K, committed 1408K, reserved 1048576K
+}
+Event: 2,438 GC heap before
+{Heap before GC invocations=3 (full 0):
+ PSYoungGen      total 36864K, used 35619K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 100% used [0x00000000eab00000,0x00000000eca00000,0x00000000eca00000)
+  from space 5120K, 75% used [0x00000000ecf00000,0x00000000ed2c8fa0,0x00000000ed400000)
+  to   space 5120K, 0% used [0x00000000eca00000,0x00000000eca00000,0x00000000ecf00000)
+ ParOldGen       total 84992K, used 8K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0002000,0x00000000c5300000)
+ Metaspace       used 12098K, capacity 12184K, committed 12416K, reserved 1060864K
+  class space    used 1769K, capacity 1808K, committed 1920K, reserved 1048576K
+Event: 2,442 GC heap after
+Heap after GC invocations=3 (full 0):
+ PSYoungGen      total 36864K, used 4462K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000eca00000)
+  from space 5120K, 87% used [0x00000000eca00000,0x00000000ece5b9d0,0x00000000ecf00000)
+  to   space 5120K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed400000)
+ ParOldGen       total 84992K, used 16K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0004000,0x00000000c5300000)
+ Metaspace       used 12098K, capacity 12184K, committed 12416K, reserved 1060864K
+  class space    used 1769K, capacity 1808K, committed 1920K, reserved 1048576K
+}
+Event: 3,170 GC heap before
+{Heap before GC invocations=4 (full 0):
+ PSYoungGen      total 36864K, used 36206K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 100% used [0x00000000eab00000,0x00000000eca00000,0x00000000eca00000)
+  from space 5120K, 87% used [0x00000000eca00000,0x00000000ece5b9d0,0x00000000ecf00000)
+  to   space 5120K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed400000)
+ ParOldGen       total 84992K, used 16K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0004000,0x00000000c5300000)
+ Metaspace       used 15277K, capacity 15380K, committed 15616K, reserved 1062912K
+  class space    used 2165K, capacity 2206K, committed 2304K, reserved 1048576K
+Event: 3,178 GC heap after
+Heap after GC invocations=4 (full 0):
+ PSYoungGen      total 36864K, used 4738K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000eca00000)
+  from space 5120K, 92% used [0x00000000ecf00000,0x00000000ed3a0938,0x00000000ed400000)
+  to   space 5120K, 0% used [0x00000000eca00000,0x00000000eca00000,0x00000000ecf00000)
+ ParOldGen       total 84992K, used 24K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0006000,0x00000000c5300000)
+ Metaspace       used 15277K, capacity 15380K, committed 15616K, reserved 1062912K
+  class space    used 2165K, capacity 2206K, committed 2304K, reserved 1048576K
+}
+Event: 3,606 GC heap before
+{Heap before GC invocations=5 (full 0):
+ PSYoungGen      total 36864K, used 36482K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 100% used [0x00000000eab00000,0x00000000eca00000,0x00000000eca00000)
+  from space 5120K, 92% used [0x00000000ecf00000,0x00000000ed3a0938,0x00000000ed400000)
+  to   space 5120K, 0% used [0x00000000eca00000,0x00000000eca00000,0x00000000ecf00000)
+ ParOldGen       total 84992K, used 24K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0006000,0x00000000c5300000)
+ Metaspace       used 16702K, capacity 16836K, committed 17152K, reserved 1064960K
+  class space    used 2361K, capacity 2438K, committed 2560K, reserved 1048576K
+Event: 3,611 GC heap after
+Heap after GC invocations=5 (full 0):
+ PSYoungGen      total 36352K, used 4560K [0x00000000eab00000, 0x00000000ed480000, 0x0000000100000000)
+  eden space 31232K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000ec980000)
+  from space 5120K, 89% used [0x00000000eca00000,0x00000000ece74010,0x00000000ecf00000)
+  to   space 5632K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed480000)
+ ParOldGen       total 84992K, used 96K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0018010,0x00000000c5300000)
+ Metaspace       used 16702K, capacity 16836K, committed 17152K, reserved 1064960K
+  class space    used 2361K, capacity 2438K, committed 2560K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 0,940 Thread 0x00007efe9c016000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007efe8d1fff54 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 126
+Event: 0,940 Thread 0x00007efe9c016000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007efe8d1fff54 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 126
+Event: 1,352 Thread 0x00007efe9c016000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007efe8d1fff54 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 126
+Event: 1,353 Thread 0x00007efe9c016000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007efe8d1e0118 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 126
+Event: 1,373 Thread 0x00007efe9c016000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007efe8d202838 method=java.lang.AbstractStringBuilder.append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; @ 1
+Event: 3,011 Thread 0x00007efe9c016000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007efe8d2551d0 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 62
+Event: 3,011 Thread 0x00007efe9c016000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007efe8d253164 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 62
+Event: 3,073 Thread 0x00007efe9c016000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007efe8d2e565c method=org.apache.xerces.impl.XMLEntityScanner.skipChar(I)Z @ 14
+Event: 3,269 Thread 0x00007efe9c016000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007efe8d287454 method=java.util.regex.Pattern$Slice.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 54
+Event: 3,514 Thread 0x00007efe9c016000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007efe8d3ea114 method=org.apache.xerces.impl.XMLEntityScanner.scanQName(Lorg/apache/xerces/xni/QName;)Z @ 68
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 1,514 Thread 0x00007efe9c016000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/AppenderSkeletonCustomizer> (0x00000000ebdba198) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 1,516 Thread 0x00007efe9c016000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/WriterAppenderCustomizer> (0x00000000ebdff008) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 1,518 Thread 0x00007efe9c016000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/ConsoleAppenderCustomizer> (0x00000000ebe34208) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 3,181 Thread 0x00007efe9c016000 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000eab144e0) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/prims/methodHandles.cpp, line 1167]
+Event: 3,183 Thread 0x00007efe9c016000 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000eab21ba0) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/prims/methodHandles.cpp, line 1167]
+Event: 3,268 Thread 0x00007efe9c016000 Exception <a 'java/io/FileNotFoundException'> (0x00000000eac15c38) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/prims/jni.cpp, line 710]
+Event: 3,268 Thread 0x00007efe9c016000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eac16288) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/prims/jvm.cpp, line 1500]
+Event: 3,268 Thread 0x00007efe9c016000 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x00000000eac185b8) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/runtime/reflection.cpp, line 1090]
+Event: 3,745 Thread 0x00007efe9c016000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000eaffcc90) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/prims/jni.cpp, line 710]
+Event: 3,745 Thread 0x00007efe9c016000 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x00000000eaffd388) thrown at [/build/openjdk-8-dVYQXe/openjdk-8-8u252-b09/src/hotspot/src/share/vm/runtime/reflection.cpp, line 1090]
+
+Events (10 events):
+Event: 3,745 loading class java/lang/Throwable$PrintStreamOrWriter
+Event: 3,745 loading class java/lang/Throwable$PrintStreamOrWriter done
+Event: 3,745 loading class java/lang/Throwable$WrappedPrintStream done
+Event: 3,745 loading class java/util/IdentityHashMap$KeySet
+Event: 3,745 loading class java/util/IdentityHashMap$KeySet done
+Event: 3,746 Thread 0x00007efe9c016000 Thread exited: 0x00007efe9c016000
+Event: 3,747 Thread 0x00007efe9c016000 Thread added: 0x00007efe9c016000
+Event: 4,076 Executing VM operation: EnableBiasedLocking
+Event: 4,076 Executing VM operation: EnableBiasedLocking done
+Event: 63,251 Thread 0x00007efe9cc8b800 Thread exited: 0x00007efe9cc8b800
+
+
+Dynamic libraries:
+c0000000-c5300000 rw-p 00000000 00:00 0 
+c5300000-eab00000 ---p 00000000 00:00 0 
+eab00000-ed480000 rw-p 00000000 00:00 0 
+ed480000-100000000 ---p 00000000 00:00 0 
+100000000-100280000 rw-p 00000000 00:00 0 
+100280000-140000000 ---p 00000000 00:00 0 
+5622647a6000-5622647a7000 r--p 00000000 08:05 2493850                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+5622647a7000-5622647a8000 r-xp 00001000 08:05 2493850                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+5622647a8000-5622647a9000 r--p 00002000 08:05 2493850                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+5622647a9000-5622647aa000 r--p 00002000 08:05 2493850                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+5622647aa000-5622647ab000 rw-p 00003000 08:05 2493850                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+5622654c4000-562265506000 rw-p 00000000 00:00 0                          [heap]
+7efe48000000-7efe48021000 rw-p 00000000 00:00 0 
+7efe48021000-7efe4c000000 ---p 00000000 00:00 0 
+7efe4c000000-7efe4c021000 rw-p 00000000 00:00 0 
+7efe4c021000-7efe50000000 ---p 00000000 00:00 0 
+7efe50000000-7efe50021000 rw-p 00000000 00:00 0 
+7efe50021000-7efe54000000 ---p 00000000 00:00 0 
+7efe54000000-7efe54021000 rw-p 00000000 00:00 0 
+7efe54021000-7efe58000000 ---p 00000000 00:00 0 
+7efe58000000-7efe58246000 rw-p 00000000 00:00 0 
+7efe58246000-7efe5c000000 ---p 00000000 00:00 0 
+7efe5c000000-7efe5c021000 rw-p 00000000 00:00 0 
+7efe5c021000-7efe60000000 ---p 00000000 00:00 0 
+7efe60000000-7efe602d3000 rw-p 00000000 00:00 0 
+7efe602d3000-7efe64000000 ---p 00000000 00:00 0 
+7efe64000000-7efe6445c000 rw-p 00000000 00:00 0 
+7efe6445c000-7efe68000000 ---p 00000000 00:00 0 
+7efe68000000-7efe68021000 rw-p 00000000 00:00 0 
+7efe68021000-7efe6c000000 ---p 00000000 00:00 0 
+7efe6ceda000-7efe6cedd000 ---p 00000000 00:00 0 
+7efe6cedd000-7efe6d0db000 rw-p 00000000 00:00 0 
+7efe6d0db000-7efe6d1db000 ---p 00000000 00:00 0 
+7efe6d1db000-7efe6d1dc000 r--p 00000000 08:05 2493876                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjaas_unix.so
+7efe6d1dc000-7efe6d1dd000 r-xp 00001000 08:05 2493876                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjaas_unix.so
+7efe6d1dd000-7efe6d1de000 r--p 00002000 08:05 2493876                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjaas_unix.so
+7efe6d1de000-7efe6d1df000 r--p 00002000 08:05 2493876                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjaas_unix.so
+7efe6d1df000-7efe6d1e0000 rw-p 00003000 08:05 2493876                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjaas_unix.so
+7efe6d1e0000-7efe6d1e3000 ---p 00000000 00:00 0 
+7efe6d1e3000-7efe6d2e1000 rw-p 00000000 00:00 0 
+7efe6d2e1000-7efe6d2e4000 ---p 00000000 00:00 0 
+7efe6d2e4000-7efe6d51a000 rw-p 00000000 00:00 0 
+7efe6d51a000-7efe6d71a000 rw-p 00000000 00:00 0 
+7efe6d71a000-7efe6d71c000 r--p 00000000 08:05 2367116                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7efe6d71c000-7efe6d720000 r-xp 00002000 08:05 2367116                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7efe6d720000-7efe6d721000 r--p 00006000 08:05 2367116                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7efe6d721000-7efe6d722000 r--p 00006000 08:05 2367116                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7efe6d722000-7efe6d723000 rw-p 00007000 08:05 2367116                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7efe6d723000-7efe6d727000 r--p 00000000 08:05 2367300                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7efe6d727000-7efe6d737000 r-xp 00004000 08:05 2367300                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7efe6d737000-7efe6d73a000 r--p 00014000 08:05 2367300                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7efe6d73a000-7efe6d73b000 ---p 00017000 08:05 2367300                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7efe6d73b000-7efe6d73c000 r--p 00017000 08:05 2367300                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7efe6d73c000-7efe6d73d000 rw-p 00018000 08:05 2367300                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7efe6d73d000-7efe6d73f000 rw-p 00000000 00:00 0 
+7efe6d73f000-7efe6d740000 r--p 00000000 08:05 2367124                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7efe6d740000-7efe6d742000 r-xp 00001000 08:05 2367124                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7efe6d742000-7efe6d743000 r--p 00003000 08:05 2367124                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7efe6d743000-7efe6d744000 r--p 00003000 08:05 2367124                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7efe6d744000-7efe6d745000 rw-p 00004000 08:05 2367124                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7efe6d749000-7efe6d74d000 r--p 00000000 08:05 2493886                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7efe6d74d000-7efe6d751000 r-xp 00004000 08:05 2493886                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7efe6d751000-7efe6d753000 r--p 00008000 08:05 2493886                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7efe6d753000-7efe6d754000 r--p 00009000 08:05 2493886                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7efe6d754000-7efe6d755000 rw-p 0000a000 08:05 2493886                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libmanagement.so
+7efe6d755000-7efe6d75a000 r--s 000a7000 08:05 2493933                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar
+7efe6d75a000-7efe6d95a000 rw-p 00000000 00:00 0 
+7efe6d95a000-7efe6d99b000 r--s 006c0000 08:05 13765400                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/mesos-1.4.0-shaded-protobuf.jar (deleted)
+7efe6d99b000-7efe6d9af000 r--s 000ec000 08:05 13765399                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-jackson-1.10.1.jar (deleted)
+7efe6d9af000-7efe6d9b0000 r--s 00003000 08:05 13765398                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/generex-1.0.2.jar (deleted)
+7efe6d9b0000-7efe6d9b9000 r--s 0006f000 08:05 13765397                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/log4j-1.2.17.jar (deleted)
+7efe6d9b9000-7efe6d9c5000 r--s 00068000 08:05 13765396                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/scala-parser-combinators_2.11-1.1.0.jar (deleted)
+7efe6d9c5000-7efe6d9c8000 r--s 00014000 08:05 13765395                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/super-csv-2.2.0.jar (deleted)
+7efe6d9c8000-7efe6d9e1000 r--s 000f4000 08:05 13765394                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-column-1.10.1.jar (deleted)
+7efe6d9e1000-7efe6d9e2000 r--s 00008000 08:05 13765393                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/machinist_2.11-0.6.1.jar (deleted)
+7efe6d9e2000-7efe6d9e6000 r--s 00020000 08:05 13765392                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-digester-1.8.jar (deleted)
+7efe6d9e6000-7efe6d9ed000 r--s 00049000 08:05 13765391                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/httpcore-4.4.10.jar (deleted)
+7efe6d9ed000-7efe6d9f8000 r--s 000bc000 08:05 13765390                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/orc-mapreduce-1.5.5-nohive.jar (deleted)
+7efe6d9f8000-7efe6d9f9000 r--s 00009000 08:05 13765389                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hive-cli-1.2.1.spark2.jar (deleted)
+7efe6d9f9000-7efe6da06000 r--s 00071000 08:05 13765388                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-module-scala_2.11-2.6.7.1.jar (deleted)
+7efe6da06000-7efe6da2f000 r--s 001ee000 08:05 13765387                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/guava-14.0.1.jar (deleted)
+7efe6da2f000-7efe6da35000 r--s 0002c000 08:05 13765386                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jdo-api-3.0.1.jar (deleted)
+7efe6da35000-7efe6da3a000 r--s 00041000 08:05 13765385                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-hadoop-1.10.1.jar (deleted)
+7efe6da3a000-7efe6da3d000 r--s 00009000 08:05 13765384                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-annotations-2.6.7.jar (deleted)
+7efe6da3d000-7efe6da3e000 r--s 00003000 08:05 13765383                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jta-1.1.jar (deleted)
+7efe6da3e000-7efe6da42000 r--s 00015000 08:05 13765382                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/xz-1.5.jar (deleted)
+7efe6da42000-7efe6da47000 r--s 00068000 08:05 13765381                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/antlr-2.7.7.jar (deleted)
+7efe6da47000-7efe6da59000 r--s 00097000 08:05 13765380                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/apacheds-kerberos-codec-2.0.0-M15.jar (deleted)
+7efe6da59000-7efe6db43000 r--s 009a3000 08:05 13765379                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/kubernetes-model-4.6.1.jar (deleted)
+7efe6db43000-7efe6db89000 r--s 0039f000 08:05 13765378                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/netty-all-4.1.42.Final.jar (deleted)
+7efe6db89000-7efe6dba4000 r--s 0012e000 08:05 13765377                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-hive_2.11-2.4.5.jar (deleted)
+7efe6dba4000-7efe6dbc9000 rw-p 00000000 00:00 0 
+7efe6dbc9000-7efe6dcd6000 r--s 00dd7000 08:05 13765376                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/scala-compiler-2.11.12.jar (deleted)
+7efe6dcd6000-7efe6dcdd000 r--s 00046000 08:05 13765375                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/libfb303-0.9.3.jar (deleted)
+7efe6dcdd000-7efe6dcdf000 r--s 00008000 08:05 13765374                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-compiler-3.0.9.jar (deleted)
+7efe6dcdf000-7efe6dd2c000 r--s 0041c000 08:05 13765373                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/scala-reflect-2.11.12.jar (deleted)
+7efe6dd2c000-7efe6dd2f000 r--s 0000f000 08:05 13765372                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-network-shuffle_2.11-2.4.5.jar (deleted)
+7efe6dd2f000-7efe6dd31000 r--s 00001000 08:05 13765371                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-tags_2.11-2.4.5-tests.jar (deleted)
+7efe6dd31000-7efe6dd35000 r--s 0001a000 08:05 13765370                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/metrics-core-3.1.5.jar (deleted)
+7efe6dd35000-7efe6dd4d000 r--s 00115000 08:05 13765369                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/xercesImpl-2.9.1.jar (deleted)
+7efe6dd4d000-7efe6dd50000 r--s 0000e000 08:05 13765368                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-container-servlet-core-2.22.2.jar (deleted)
+7efe6dd50000-7efe6dd52000 r--s 0001f000 08:05 13765367                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-crypto-1.0.0.jar (deleted)
+7efe6dd52000-7efe6dd89000 r--s 00325000 08:05 13765366                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/calcite-core-1.2.0-incubating.jar (deleted)
+7efe6dd89000-7efe6dd8a000 r--s 00004000 08:05 13765365                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/opencsv-2.3.jar (deleted)
+7efe6dd8a000-7efe6dda3000 r--s 0012c000 08:05 13765364                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/netty-3.9.9.Final.jar (deleted)
+7efe6dda3000-7efe6dda5000 r--s 0000e000 08:05 13765363                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-mapreduce-client-jobclient-2.7.3.jar (deleted)
+7efe6dda5000-7efe6ddab000 r--s 00045000 08:05 13765362                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-httpclient-3.1.jar (deleted)
+7efe6ddab000-7efe6ddac000 r--s 00009000 08:05 13765361                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-annotations-2.7.3.jar (deleted)
+7efe6ddac000-7efe6ddae000 r--s 0000f000 08:05 13765360                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/activation-1.1.1.jar (deleted)
+7efe6ddae000-7efe6de57000 r--s 00a4f000 08:05 13765359                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hive-exec-1.2.1.spark2.jar (deleted)
+7efe6de57000-7efe6de58000 r--s 00000000 08:05 13765358                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javax.inject-1.jar (deleted)
+7efe6de58000-7efe6de5a000 r--s 00011000 08:05 13765357                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-launcher_2.11-2.4.5.jar (deleted)
+7efe6de5a000-7efe6de6a000 r--s 00133000 08:05 13765356                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/arrow-vector-0.10.0.jar (deleted)
+7efe6de6a000-7efe6de6f000 r--s 0002a000 08:05 13765355                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/gson-2.2.4.jar (deleted)
+7efe6de6f000-7efe6de71000 r--s 00012000 08:05 13765354                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/compress-lzf-1.0.3.jar (deleted)
+7efe6de71000-7efe6de72000 r--s 00000000 08:05 13765353                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/macro-compat_2.11-1.1.1.jar (deleted)
+7efe6de72000-7efe6de80000 r--s 000b1000 08:05 13765352                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-mapper-asl-1.9.13.jar (deleted)
+7efe6de80000-7efe6de84000 r--s 0001e000 08:05 13765351                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-repl_2.11-2.4.5.jar (deleted)
+7efe6de84000-7efe6df41000 r--s 0090a000 08:05 13765350                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-catalyst_2.11-2.4.5.jar (deleted)
+7efe6df41000-7efe6df43000 r--s 0000f000 08:05 13765349                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/curator-client-2.7.1.jar (deleted)
+7efe6df43000-7efe6e009000 r--s 008ab000 08:05 13765348                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-sql_2.11-2.4.5.jar (deleted)
+7efe6e009000-7efe6e011000 r--s 00059000 08:05 13765347                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javolution-5.5.1.jar (deleted)
+7efe6e011000-7efe6e018000 r--s 00058000 08:05 13765346                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-yarn-server-common-2.7.3.jar (deleted)
+7efe6e018000-7efe6e01a000 r--s 00009000 08:05 13765345                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-module-paranamer-2.7.9.jar (deleted)
+7efe6e01a000-7efe6e020000 r--s 00043000 08:05 13765344                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-configuration-1.6.jar (deleted)
+7efe6e020000-7efe6e02b000 r--s 00062000 08:05 13765343                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/calcite-linq4j-1.2.0-incubating.jar (deleted)
+7efe6e02b000-7efe6e02e000 r--s 00025000 08:05 13765342                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-dbcp-1.4.jar (deleted)
+7efe6e02e000-7efe6e031000 r--s 00014000 08:05 13765341                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/json4s-ast_2.11-3.5.3.jar (deleted)
+7efe6e031000-7efe6e08a000 r--s 00523000 08:05 13765340                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/scala-library-2.11.12.jar (deleted)
+7efe6e08a000-7efe6e08f000 r--s 00027000 08:05 13765339                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/automaton-1.11-8.jar (deleted)
+7efe6e08f000-7efe6e09d000 r--s 00089000 08:05 13765338                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/json4s-scalap_2.11-3.5.3.jar (deleted)
+7efe6e09d000-7efe6e0a2000 r--s 0003e000 08:05 13765337                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-net-3.1.jar (deleted)
+7efe6e0a2000-7efe6e0a4000 r--s 0000e000 08:05 13765336                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/guice-servlet-3.0.jar (deleted)
+7efe6e0a4000-7efe6e0ad000 r--s 00046000 08:05 13765335                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-dataformat-yaml-2.6.7.jar (deleted)
+7efe6e0ad000-7efe6e0b5000 r--s 0005b000 08:05 13765334                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/univocity-parsers-2.7.3.jar (deleted)
+7efe6e0b5000-7efe6e0c6000 r--s 00089000 08:05 13765333                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/joda-time-2.9.3.jar (deleted)
+7efe6e0c6000-7efe6e0dc000 r--s 001a4000 08:05 13765332                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/datanucleus-rdbms-3.2.9.jar (deleted)
+7efe6e0dc000-7efe6e0e0000 r--s 0002a000 08:05 13765331                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/breeze-macros_2.11-0.13.2.jar (deleted)
+7efe6e0e0000-7efe6e0e2000 r--s 00027000 08:05 13765330                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/core-1.1.2.jar (deleted)
+7efe6e0e2000-7efe6e0e3000 r--s 0000b000 08:05 13765329                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/snappy-0.2.jar (deleted)
+7efe6e0e3000-7efe6e0e5000 r--s 0000e000 08:05 13765328                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/oro-2.0.8.jar (deleted)
+7efe6e0e5000-7efe6e0f4000 r--s 00096000 08:05 13765327                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-yarn_2.11-2.4.5.jar (deleted)
+7efe6e0f4000-7efe6e0fa000 r--s 0004c000 08:05 13765326                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/antlr4-runtime-4.7.jar (deleted)
+7efe6e0fa000-7efe6e101000 r--s 00039000 08:05 13765325                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/calcite-avatica-1.2.0-incubating.jar (deleted)
+7efe6e101000-7efe6e109000 r--s 0003b000 08:05 13765324                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/curator-recipes-2.7.1.jar (deleted)
+7efe6e109000-7efe6e118000 r--s 0009f000 08:05 13765323                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/guice-3.0.jar (deleted)
+7efe6e118000-7efe6e123000 r--s 000c5000 08:05 13765322                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-encoding-1.10.1.jar (deleted)
+7efe6e123000-7efe6e124000 r--s 00003000 08:05 13765321                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/xmlenc-0.52.jar (deleted)
+7efe6e124000-7efe6e132000 r--s 0009d000 08:05 13765320                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-common-2.22.2.jar (deleted)
+7efe6e132000-7efe6e13f000 r--s 000a0000 08:05 13765319                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-graphx_2.11-2.4.5.jar (deleted)
+7efe6e13f000-7efe6e155000 r--s 00124000 08:05 13765318                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/ivy-2.4.0.jar (deleted)
+7efe6e155000-7efe6e169000 r--s 0016b000 08:05 13765317                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/orc-core-1.5.5-nohive.jar (deleted)
+7efe6e169000-7efe6e16c000 r--s 00015000 08:05 13765316                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/pyrolite-4.13.jar (deleted)
+7efe6e16c000-7efe6e16e000 r--s 00002000 08:05 13765315                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/aopalliance-repackaged-2.4.0-b34.jar (deleted)
+7efe6e16e000-7efe6e176000 r--s 00066000 08:05 13765314                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/apache-log4j-extras-1.2.17.jar (deleted)
+7efe6e176000-7efe6e178000 r--s 0000e000 08:05 13765313                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-logging-1.1.3.jar (deleted)
+7efe6e178000-7efe6e17a000 r--s 00005000 08:05 13765312                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javax.annotation-api-1.2.jar (deleted)
+7efe6e17a000-7efe6e17c000 r--s 00238000 08:05 13765311                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/zstd-jni-1.3.2-2.jar (deleted)
+7efe6e17c000-7efe6e180000 r--s 0003e000 08:05 13765310                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jline-2.14.6.jar (deleted)
+7efe6e180000-7efe6e185000 r--s 0004e000 08:05 13765309                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/datanucleus-api-jdo-3.2.6.jar (deleted)
+7efe6e185000-7efe6e197000 r--s 00112000 08:05 13765308                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/arpack_combined_all-0.1.jar (deleted)
+7efe6e197000-7efe6e1fa000 r--s 004de000 08:05 13765307                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hive-metastore-1.2.1.spark2.jar (deleted)
+7efe6e1fa000-7efe6e1fc000 r--s 00005000 08:05 13765306                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/stax-api-1.0.1.jar (deleted)
+7efe6e1fc000-7efe6e28f000 r--s 00716000 08:05 13765305                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-mllib_2.11-2.4.5.jar (deleted)
+7efe6e28f000-7efe6e2a0000 r--s 0010c000 08:05 13765304                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-databind-2.6.7.3.jar (deleted)
+7efe6e2a0000-7efe6e2a3000 r--s 00016000 08:05 13765303                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jsp-api-2.1.jar (deleted)
+7efe6e2a3000-7efe6e2ba000 r--s 00183000 08:05 13765302                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-yarn-common-2.7.3.jar (deleted)
+7efe6e2ba000-7efe6e2bb000 r--s 00006000 08:05 13765301                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-client-2.7.3.jar (deleted)
+7efe6e2bb000-7efe6e2bc000 r--s 00004000 08:05 13765300                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/osgi-resource-locator-1.0.1.jar (deleted)
+7efe6e2bc000-7efe6e2be000 r--s 0001c000 08:05 13765299                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/py4j-0.10.7.jar (deleted)
+7efe6e2be000-7efe6e2c0000 r--s 00003000 08:05 13765298                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jcl-over-slf4j-1.7.16.jar (deleted)
+7efe6e2c0000-7efe6e2c8000 r--s 0005d000 08:05 13765297                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/kryo-shaded-4.0.2.jar (deleted)
+7efe6e2c8000-7efe6e2ca000 r--s 00004000 08:05 13765296                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/stax-api-1.0-2.jar (deleted)
+7efe6e2ca000-7efe6e2d1000 r--s 0007d000 08:05 13765295                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jetty-6.1.26.jar (deleted)
+7efe6e2d1000-7efe6e2d9000 r--s 0007b000 08:05 13765294                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/protobuf-java-2.5.0.jar (deleted)
+7efe6e2d9000-7efe6e2da000 r--s 00003000 08:05 13765293                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/metrics-json-3.1.5.jar (deleted)
+7efe6e2da000-7efe6e2e7000 r--s 00083000 08:05 13765292                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-collections-3.2.2.jar (deleted)
+7efe6e2e7000-7efe6e2fd000 r--s 000d3000 08:05 13765291                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-server-2.22.2.jar (deleted)
+7efe6e2fd000-7efe6e302000 r--s 00027000 08:05 13765290                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hk2-api-2.4.0-b34.jar (deleted)
+7efe6e302000-7efe6e333000 rw-p 00000000 00:00 0 
+7efe6e333000-7efe6e337000 r--p 00000000 08:05 2493888                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7efe6e337000-7efe6e348000 r-xp 00004000 08:05 2493888                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7efe6e348000-7efe6e34c000 r--p 00015000 08:05 2493888                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7efe6e34c000-7efe6e34d000 r--p 00018000 08:05 2493888                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7efe6e34d000-7efe6e34e000 rw-p 00019000 08:05 2493888                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnet.so
+7efe6e34e000-7efe6e355000 r--p 00000000 08:05 2493889                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7efe6e355000-7efe6e35e000 r-xp 00007000 08:05 2493889                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7efe6e35e000-7efe6e361000 r--p 00010000 08:05 2493889                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7efe6e361000-7efe6e362000 r--p 00012000 08:05 2493889                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7efe6e362000-7efe6e363000 rw-p 00013000 08:05 2493889                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libnio.so
+7efe6e363000-7efe6e386000 rw-p 00000000 00:00 0 
+7efe6e386000-7efe6e47c000 r--s 00bf8000 08:05 13765289                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-core_2.11-2.4.5.jar (deleted)
+7efe6e47c000-7efe6e47d000 r--s 00004000 08:05 13765288                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-jaxrs-1.9.13.jar (deleted)
+7efe6e47d000-7efe6e481000 r--s 0004c000 08:05 13765287                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/RoaringBitmap-0.7.45.jar (deleted)
+7efe6e481000-7efe6e482000 r--s 00004000 08:05 13765286                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/eigenbase-properties-1.1.5.jar (deleted)
+7efe6e482000-7efe6e483000 r--s 00000000 08:05 13765285                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/kubernetes-model-common-4.6.1.jar (deleted)
+7efe6e483000-7efe6e494000 r--s 00097000 08:05 13765284                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-mesos_2.11-2.4.5.jar (deleted)
+7efe6e494000-7efe6e4ac000 r--s 000d6000 08:05 13765283                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-guava-2.22.2.jar (deleted)
+7efe6e4ac000-7efe6e4b2000 r--s 00028000 08:05 13765282                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/curator-framework-2.7.1.jar (deleted)
+7efe6e4b2000-7efe6e4b7000 r--s 00038000 08:05 13765281                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-beanutils-1.9.4.jar (deleted)
+7efe6e4b7000-7efe6e4b8000 r--s 00001000 08:05 13765280                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/minlog-1.3.0.jar (deleted)
+7efe6e4b8000-7efe6e4ba000 r--s 00009000 08:05 13765279                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-cli-1.2.jar (deleted)
+7efe6e4ba000-7efe6e4c4000 r--s 0007b000 08:05 13765278                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-mapreduce-client-app-2.7.3.jar (deleted)
+7efe6e4c4000-7efe6e4c8000 r--s 00019000 08:05 13765277                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javax.ws.rs-api-2.0.1.jar (deleted)
+7efe6e4c8000-7efe6e4ce000 r--s 00062000 08:05 13765276                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/okhttp-3.12.0.jar (deleted)
+7efe6e4ce000-7efe6e4cf000 r--s 0000a000 08:05 13765275                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/apacheds-i18n-2.0.0-M15.jar (deleted)
+7efe6e4cf000-7efe6e4d0000 r--s 00006000 08:05 13765274                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-xc-1.9.13.jar (deleted)
+7efe6e4d0000-7efe6e4d4000 r--s 00029000 08:05 13765273                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hk2-locator-2.4.0-b34.jar (deleted)
+7efe6e4d4000-7efe6e4f5000 r--s 0015c000 08:05 13765272                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/avro-1.8.2.jar (deleted)
+7efe6e4f5000-7efe6e4f9000 r--s 0002a000 08:05 13765271                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-io-2.4.jar (deleted)
+7efe6e4f9000-7efe6e4fd000 r--s 0001a000 08:05 13765270                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hk2-utils-2.4.0-b34.jar (deleted)
+7efe6e4fd000-7efe6e50a000 r--s 0009b000 08:05 13765269                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/kubernetes-client-4.6.1.jar (deleted)
+7efe6e50a000-7efe6e50e000 r--s 0002a000 08:05 13765268                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/avro-mapred-1.8.2-hadoop2.jar (deleted)
+7efe6e50e000-7efe6e527000 r--s 00150000 08:05 13765267                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/htrace-core-3.1.0-incubating.jar (deleted)
+7efe6e527000-7efe6e529000 r--s 00010000 08:05 13765266                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-mapreduce-client-shuffle-2.7.3.jar (deleted)
+7efe6e529000-7efe6e533000 r--s 000a5000 08:05 13765265                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javassist-3.18.1-GA.jar (deleted)
+7efe6e533000-7efe6e536000 r--s 00019000 08:05 13765264                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/bonecp-0.8.0.RELEASE.jar (deleted)
+7efe6e536000-7efe6e537000 r--s 00002000 08:05 13765263                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/slf4j-log4j12-1.7.16.jar (deleted)
+7efe6e537000-7efe6e53a000 r--s 001eb000 08:05 13765262                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/snappy-java-1.1.7.3.jar (deleted)
+7efe6e53a000-7efe6e557000 r--s 001d5000 08:05 13765261                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-yarn-api-2.7.3.jar (deleted)
+7efe6e557000-7efe6e558000 r--s 00002000 08:05 13765260                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jpam-1.1.jar (deleted)
+7efe6e558000-7efe6e55c000 r--s 0000c000 08:05 13765259                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/validation-api-1.1.0.Final.jar (deleted)
+7efe6e55c000-7efe6e55e000 r--s 00014000 08:05 13765258                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spire-macros_2.11-0.13.0.jar (deleted)
+7efe6e55e000-7efe6e560000 r--s 00007000 08:05 13765257                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/paranamer-2.8.jar (deleted)
+7efe6e560000-7efe6e562000 r--s 0000d000 08:05 13765256                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-yarn-server-web-proxy-2.7.3.jar (deleted)
+7efe6e562000-7efe6e57a000 r--s 001b6000 08:05 13765255                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/datanucleus-core-3.2.10.jar (deleted)
+7efe6e57a000-7efe6e57c000 r--s 00014000 08:05 13765254                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/okio-1.15.0.jar (deleted)
+7efe6e57c000-7efe6e57d000 r--s 00006000 08:05 13765253                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/orc-shims-1.5.5.jar (deleted)
+7efe6e57d000-7efe6e581000 r--s 00029000 08:05 13765252                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-mllib-local_2.11-2.4.5.jar (deleted)
+7efe6e581000-7efe6e587000 r--s 00063000 08:05 13765251                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jodd-core-3.5.2.jar (deleted)
+7efe6e587000-7efe6e58a000 r--s 0001e000 08:05 13765250                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/aircompressor-0.10.jar (deleted)
+7efe6e58a000-7efe6e58b000 r--s 00001000 08:05 13765249                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javax.inject-2.4.0-b34.jar (deleted)
+7efe6e58b000-7efe6e58e000 r--s 00026000 08:05 13765248                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-yarn-client-2.7.3.jar (deleted)
+7efe6e58e000-7efe6e590000 r--s 0000d000 08:05 13765247                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/chill-java-0.9.3.jar (deleted)
+7efe6e590000-7efe6e59d000 r--s 000b1000 08:05 13765246                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-mapreduce-client-common-2.7.3.jar (deleted)
+7efe6e59d000-7efe6e5be000 r--s 0019b000 08:05 13765245                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-hive-thriftserver_2.11-2.4.5.jar (deleted)
+7efe6e5be000-7efe6e5c0000 r--s 00000000 08:05 13765244                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/aopalliance-1.0.jar (deleted)
+7efe6e5c0000-7efe6e5c5000 r--s 00041000 08:05 13765243                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/xbean-asm6-shaded-4.8.jar (deleted)
+7efe6e5c5000-7efe6e5d0000 r--s 000b9000 08:05 13765242                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/janino-3.0.9.jar (deleted)
+7efe6e5d0000-7efe6e63b000 r--s 0093d000 08:05 13765241                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spire_2.11-0.13.0.jar (deleted)
+7efe6e63b000-7efe6e63d000 r--s 00012000 08:05 13765240                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/api-util-1.0.0-M20.jar (deleted)
+7efe6e63d000-7efe6e644000 r--s 0003f000 08:05 13765239                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-codec-1.10.jar (deleted)
+7efe6e644000-7efe6e646000 r--s 0000b000 08:05 13765238                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-unsafe_2.11-2.4.5.jar (deleted)
+7efe6e646000-7efe6e64e000 r--s 0006e000 08:05 13765237                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-lang3-3.5.jar (deleted)
+7efe6e64e000-7efe6e650000 r--s 00003000 08:05 13765236                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-container-servlet-2.22.2.jar (deleted)
+7efe6e650000-7efe6e671000 r--s 00177000 08:05 13765235                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hppc-0.7.2.jar (deleted)
+7efe6e671000-7efe6e673000 r--s 00004000 08:05 13765234                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/metrics-graphite-3.1.5.jar (deleted)
+7efe6e673000-7efe6e675000 r--s 00007000 08:05 13765233                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/zjsonpatch-0.3.0.jar (deleted)
+7efe6e675000-7efe6e678000 r--s 0000b000 08:05 13765232                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/objenesis-2.5.1.jar (deleted)
+7efe6e678000-7efe6e67b000 r--s 00015000 08:05 13765231                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-pool-1.5.4.jar (deleted)
+7efe6e67b000-7efe6e6e6000 r--s 00784000 08:05 13765230                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-hdfs-2.7.3.jar (deleted)
+7efe6e6e6000-7efe6e6e8000 r--s 00002000 08:05 13765229                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/logging-interceptor-3.12.0.jar (deleted)
+7efe6e6e8000-7efe6e6ea000 r--s 00020000 08:05 13765228                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hive-beeline-1.2.1.spark2.jar (deleted)
+7efe6e6ea000-7efe6e6ee000 r--s 00025000 08:05 13765227                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/antlr-runtime-3.4.jar (deleted)
+7efe6e6ee000-7efe6e6f1000 r--s 0001e000 08:05 13765226                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/avro-ipc-1.8.2.jar (deleted)
+7efe6e6f1000-7efe6e6f7000 r--s 0003c000 08:05 13765225                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/snakeyaml-1.15.jar (deleted)
+7efe6e6f7000-7efe6e6f9000 r--s 00003000 08:05 13765224                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/api-asn1-api-1.0.0-M20.jar (deleted)
+7efe6e6f9000-7efe6e6fd000 r--s 00036000 08:05 13765223                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/ST4-4.0.4.jar (deleted)
+7efe6e6fd000-7efe6e6ff000 r--s 0000c000 08:05 13765222                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-kvstore_2.11-2.4.5.jar (deleted)
+7efe6e6ff000-7efe6e704000 r--s 00035000 08:05 13765221                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/chill_2.11-0.9.3.jar (deleted)
+7efe6e704000-7efe6e70f000 r--s 000b0000 08:05 13765220                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jtransforms-2.4.0.jar (deleted)
+7efe6e70f000-7efe6e712000 r--s 00006000 08:05 13765219                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jsr305-1.3.9.jar (deleted)
+7efe6e712000-7efe6e714000 r--s 00000000 08:05 13765218                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jul-to-slf4j-1.7.16.jar (deleted)
+7efe6e714000-7efe6e715000 r--s 00003000 08:05 13765217                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-tags_2.11-2.4.5.jar (deleted)
+7efe6e715000-7efe6e718000 r--s 000fd000 08:05 13765216                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/leveldbjni-all-1.8.jar (deleted)
+7efe6e718000-7efe6e71a000 r--s 0000b000 08:05 13765215                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/arrow-format-0.10.0.jar (deleted)
+7efe6e71a000-7efe6e71c000 r--s 00017000 08:05 13765214                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hive-jdbc-1.2.1.spark2.jar (deleted)
+7efe6e71c000-7efe6e720000 r--s 00028000 08:05 13765213                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jetty-util-6.1.26.jar (deleted)
+7efe6e720000-7efe6e756000 r--s 0031c000 08:05 13765212                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-common-2.7.3.jar (deleted)
+7efe6e756000-7efe6e759000 r--s 00017000 08:05 13765211                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jaxb-api-2.2.2.jar (deleted)
+7efe6e759000-7efe6e77d000 r--s 001cd000 08:05 13765210                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-math3-3.4.1.jar (deleted)
+7efe6e77d000-7efe6e784000 r--s 00053000 08:05 13765209                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-compress-1.8.1.jar (deleted)
+7efe6e784000-7efe6e7b3000 r--s 0021a000 08:05 13765207                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-network-common_2.11-2.4.5.jar (deleted)
+7efe6e7b3000-7efe6e7c1000 r--s 000a3000 08:05 13765206                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-format-2.4.0.jar (deleted)
+7efe6e7c1000-7efe6e7c5000 r--s 0003c000 08:05 13765205                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-core-2.6.7.jar (deleted)
+7efe6e7c5000-7efe6e7de000 r--s 00164000 08:05 13765204                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-mapreduce-client-core-2.7.3.jar (deleted)
+7efe6e7de000-7efe6e7e0000 r--s 0000a000 08:05 13765203                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/json4s-jackson_2.11-3.5.3.jar (deleted)
+7efe6e7e0000-7efe6e80f000 r--s 001e4000 08:05 13765202                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-streaming_2.11-2.4.5.jar (deleted)
+7efe6e80f000-7efe6e832000 rw-p 00000000 00:00 0 
+7efe6e832000-7efe6e90a000 r--s 00d92000 08:05 13765201                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/breeze_2.11-0.13.2.jar (deleted)
+7efe6e90a000-7efe6e950000 r--s 00317000 08:05 13765194                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/shapeless_2.11-2.3.2.jar (deleted)
+7efe6e950000-7efe6e951000 ---p 00000000 00:00 0 
+7efe6e951000-7efe6ea51000 rw-p 00000000 00:00 0 
+7efe6ea51000-7efe6ea54000 ---p 00000000 00:00 0 
+7efe6ea54000-7efe6eb52000 rw-p 00000000 00:00 0 
+7efe6eb52000-7efe6eb53000 ---p 00000000 00:00 0 
+7efe6eb53000-7efe6eb56000 ---p 00000000 00:00 0 
+7efe6eb56000-7efe6ec53000 rw-p 00000000 00:00 0 
+7efe6ec53000-7efe6ec54000 ---p 00000000 00:00 0 
+7efe6ec54000-7efe6ec57000 ---p 00000000 00:00 0 
+7efe6ec57000-7efe6ed54000 rw-p 00000000 00:00 0 
+7efe6ed54000-7efe6ed55000 ---p 00000000 00:00 0 
+7efe6ed55000-7efe6ed58000 ---p 00000000 00:00 0 
+7efe6ed58000-7efe6ee55000 rw-p 00000000 00:00 0 
+7efe6ee55000-7efe6ee58000 ---p 00000000 00:00 0 
+7efe6ee58000-7efe6ef56000 rw-p 00000000 00:00 0 
+7efe6ef56000-7efe70000000 r--p 00000000 08:05 2365687                    /usr/lib/locale/locale-archive
+7efe70000000-7efe70021000 rw-p 00000000 00:00 0 
+7efe70021000-7efe74000000 ---p 00000000 00:00 0 
+7efe74000000-7efe74021000 rw-p 00000000 00:00 0 
+7efe74021000-7efe78000000 ---p 00000000 00:00 0 
+7efe78000000-7efe78021000 rw-p 00000000 00:00 0 
+7efe78021000-7efe7c000000 ---p 00000000 00:00 0 
+7efe7c000000-7efe7c021000 rw-p 00000000 00:00 0 
+7efe7c021000-7efe80000000 ---p 00000000 00:00 0 
+7efe80000000-7efe8004f000 rw-p 00000000 00:00 0 
+7efe8004f000-7efe84000000 ---p 00000000 00:00 0 
+7efe84000000-7efe84021000 rw-p 00000000 00:00 0 
+7efe84021000-7efe88000000 ---p 00000000 00:00 0 
+7efe88000000-7efe8804d000 rw-p 00000000 00:00 0 
+7efe8804d000-7efe8c000000 ---p 00000000 00:00 0 
+7efe8c000000-7efe8c001000 r--s 00000000 08:05 13765208                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/shims-0.7.45.jar (deleted)
+7efe8c001000-7efe8c003000 r--s 00006000 08:05 13765200                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-sketch_2.11-2.4.5.jar (deleted)
+7efe8c003000-7efe8c007000 r--s 00014000 08:05 13765199                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-common-1.10.1.jar (deleted)
+7efe8c007000-7efe8c008000 r--s 00002000 08:05 13765198                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/flatbuffers-1.2.0-3f79e055.jar (deleted)
+7efe8c008000-7efe8c009000 r--s 00009000 08:05 13765197                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/slf4j-api-1.7.16.jar (deleted)
+7efe8c009000-7efe8c016000 r--s 00077000 08:05 13765196                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/spark-kubernetes_2.11-2.4.5.jar (deleted)
+7efe8c016000-7efe8c019000 r--s 00028000 08:05 13765195                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/stream-2.7.0.jar (deleted)
+7efe8c019000-7efe8c01d000 r--s 00025000 08:05 13765193                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-client-2.22.2.jar (deleted)
+7efe8c01d000-7efe8c01f000 r--s 00015000 08:05 13765192                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-auth-2.7.3.jar (deleted)
+7efe8c01f000-7efe8c021000 r--s 00010000 08:05 13765191                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-media-jaxb-2.22.2.jar (deleted)
+7efe8c021000-7efe8c024000 r--s 00015000 08:05 13765190                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javax.servlet-api-3.1.0.jar (deleted)
+7efe8c024000-7efe8c026000 r--s 00012000 08:05 13765189                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/arrow-memory-0.10.0.jar (deleted)
+7efe8c026000-7efe8c055000 r--s 002e5000 08:05 13765188                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/derby-10.12.1.1.jar (deleted)
+7efe8c055000-7efe8c062000 r--s 0009c000 08:05 13765187                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/json4s-core_2.11-3.5.3.jar (deleted)
+7efe8c062000-7efe8c06c000 r--s 0009a000 08:05 13765186                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/scala-xml_2.11-1.0.5.jar (deleted)
+7efe8c06c000-7efe8c06f000 r--s 00022000 08:05 13765185                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/stringtemplate-3.2.1.jar (deleted)
+7efe8c06f000-7efe8c075000 r--s 00034000 08:05 13765184                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/libthrift-0.9.3.jar (deleted)
+7efe8c075000-7efe8c079000 r--s 00035000 08:05 13765183                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-core-asl-1.9.13.jar (deleted)
+7efe8c079000-7efe8c07b000 r--s 00008000 08:05 13765182                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/metrics-jvm-3.1.5.jar (deleted)
+7efe8c07b000-7efe8c07e000 r--s 00058000 08:05 13765181                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/lz4-java-1.4.0.jar (deleted)
+7efe8c07e000-7efe8c08a000 r--s 000b6000 08:05 13765180                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/zookeeper-3.4.6.jar (deleted)
+7efe8c08a000-7efe8c08f000 r--s 00041000 08:05 13765179                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-lang-2.6.jar (deleted)
+7efe8c08f000-7efe8c090000 r--s 00007000 08:05 13765178                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-module-jaxb-annotations-2.6.7.jar (deleted)
+7efe8c090000-7efe8c092000 r--s 00003000 08:05 13765177                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/JavaEWAH-0.3.2.jar (deleted)
+7efe8c092000-7efe8c0c6000 r--s 00277000 08:05 13765176                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-hadoop-bundle-1.6.0.jar (deleted)
+7efe8c0c6000-7efe8c0d3000 r--s 000af000 08:05 13765175                   /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/httpclient-4.5.6.jar (deleted)
+7efe8c0d3000-7efe8c0ee000 r--s 001d6000 08:05 2493915                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/nashorn.jar
+7efe8c0ee000-7efe8c0f1000 r--s 0000f000 08:05 2493912                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/icedtea-sound.jar
+7efe8c0f1000-7efe8c0f4000 ---p 00000000 00:00 0 
+7efe8c0f4000-7efe8c1f2000 rw-p 00000000 00:00 0 
+7efe8c1f2000-7efe8c1f5000 ---p 00000000 00:00 0 
+7efe8c1f5000-7efe8c2f3000 rw-p 00000000 00:00 0 
+7efe8c2f3000-7efe8c2f4000 ---p 00000000 00:00 0 
+7efe8c2f4000-7efe8d000000 rw-p 00000000 00:00 0 
+7efe8d000000-7efe8d470000 rwxp 00000000 00:00 0 
+7efe8d470000-7efe9c000000 ---p 00000000 00:00 0 
+7efe9c000000-7efe9d088000 rw-p 00000000 00:00 0 
+7efe9d088000-7efea0000000 ---p 00000000 00:00 0 
+7efea0000000-7efea0002000 r--s 00001000 08:05 2493911                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/dnsns.jar
+7efea0002000-7efea0006000 r--s 0003a000 08:05 2493918                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunpkcs11.jar
+7efea0006000-7efea000c000 r--s 0003d000 08:05 2493917                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunjce_provider.jar
+7efea000c000-7efea0016000 r--s 00116000 08:05 2493914                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/localedata.jar
+7efea0016000-7efea0017000 r--s 00010000 08:05 2493919                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/zipfs.jar
+7efea0017000-7efea0032000 r--s 00394000 08:05 2493910                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/cldrdata.jar
+7efea0032000-7efea0034000 r--s 0000c000 08:05 3151771                    /usr/share/java/java-atk-wrapper.jar
+7efea0034000-7efea042a000 rw-p 00000000 00:00 0 
+7efea042a000-7efea05fc000 r--s 03ca5000 08:05 2493939                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+7efea05fc000-7efea3109000 rw-p 00000000 00:00 0 
+7efea3109000-7efea310a000 ---p 00000000 00:00 0 
+7efea310a000-7efea320a000 rw-p 00000000 00:00 0 
+7efea320a000-7efea320b000 ---p 00000000 00:00 0 
+7efea320b000-7efea330b000 rw-p 00000000 00:00 0 
+7efea330b000-7efea330c000 ---p 00000000 00:00 0 
+7efea330c000-7efea340c000 rw-p 00000000 00:00 0 
+7efea340c000-7efea340d000 ---p 00000000 00:00 0 
+7efea340d000-7efea3537000 rw-p 00000000 00:00 0 
+7efea3537000-7efea3663000 ---p 00000000 00:00 0 
+7efea3663000-7efea368d000 rw-p 00000000 00:00 0 
+7efea368d000-7efea37b8000 ---p 00000000 00:00 0 
+7efea37b8000-7efea37ce000 rw-p 00000000 00:00 0 
+7efea37ce000-7efea3863000 ---p 00000000 00:00 0 
+7efea3863000-7efea3876000 rw-p 00000000 00:00 0 
+7efea3876000-7efea3c24000 ---p 00000000 00:00 0 
+7efea3c24000-7efea3c27000 r--p 00000000 08:05 2367118                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7efea3c27000-7efea3c2e000 r-xp 00003000 08:05 2367118                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7efea3c2e000-7efea3c30000 r--p 0000a000 08:05 2367118                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7efea3c30000-7efea3c31000 r--p 0000b000 08:05 2367118                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7efea3c31000-7efea3c32000 rw-p 0000c000 08:05 2367118                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7efea3c32000-7efea3c38000 rw-p 00000000 00:00 0 
+7efea3c38000-7efea3c39000 r--s 0000a000 08:05 2493913                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jaccess.jar
+7efea3c39000-7efea3c3c000 r--p 00000000 08:05 2493896                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7efea3c3c000-7efea3c41000 r-xp 00003000 08:05 2493896                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7efea3c41000-7efea3c43000 r--p 00008000 08:05 2493896                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7efea3c43000-7efea3c44000 r--p 00009000 08:05 2493896                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7efea3c44000-7efea3c45000 rw-p 0000a000 08:05 2493896                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libzip.so
+7efea3c45000-7efea3c4d000 rw-s 00000000 08:05 7995516                    /tmp/hsperfdata_eduard/13809
+7efea3c4d000-7efea3c5a000 r--p 00000000 08:05 2493877                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7efea3c5a000-7efea3c72000 r-xp 0000d000 08:05 2493877                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7efea3c72000-7efea3c79000 r--p 00025000 08:05 2493877                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7efea3c79000-7efea3c7a000 r--p 0002b000 08:05 2493877                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7efea3c7a000-7efea3c7c000 rw-p 0002c000 08:05 2493877                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libjava.so
+7efea3c7c000-7efea3c7f000 r--p 00000000 08:05 2367320                    /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7efea3c7f000-7efea3c83000 r-xp 00003000 08:05 2367320                    /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7efea3c83000-7efea3c84000 r--p 00007000 08:05 2367320                    /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7efea3c84000-7efea3c85000 ---p 00008000 08:05 2367320                    /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7efea3c85000-7efea3c86000 r--p 00008000 08:05 2367320                    /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7efea3c86000-7efea3c87000 rw-p 00009000 08:05 2367320                    /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7efea3c87000-7efea3c88000 ---p 00000000 00:00 0 
+7efea3c88000-7efea3c8b000 ---p 00000000 00:00 0 
+7efea3c8b000-7efea3d88000 rw-p 00000000 00:00 0 
+7efea3d88000-7efea3d8b000 r--p 00000000 08:05 2366641                    /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7efea3d8b000-7efea3d9d000 r-xp 00003000 08:05 2366641                    /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7efea3d9d000-7efea3da1000 r--p 00015000 08:05 2366641                    /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7efea3da1000-7efea3da2000 r--p 00018000 08:05 2366641                    /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7efea3da2000-7efea3da3000 rw-p 00019000 08:05 2366641                    /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7efea3da3000-7efea3db2000 r--p 00000000 08:05 2366994                    /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7efea3db2000-7efea3e59000 r-xp 0000f000 08:05 2366994                    /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7efea3e59000-7efea3ef0000 r--p 000b6000 08:05 2366994                    /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7efea3ef0000-7efea3ef1000 r--p 0014c000 08:05 2366994                    /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7efea3ef1000-7efea3ef2000 rw-p 0014d000 08:05 2366994                    /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7efea3ef2000-7efea3f88000 r--p 00000000 08:05 2367422                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7efea3f88000-7efea4078000 r-xp 00096000 08:05 2367422                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7efea4078000-7efea40c1000 r--p 00186000 08:05 2367422                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7efea40c1000-7efea40c2000 ---p 001cf000 08:05 2367422                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7efea40c2000-7efea40cd000 r--p 001cf000 08:05 2367422                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7efea40cd000-7efea40d0000 rw-p 001da000 08:05 2367422                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7efea40d0000-7efea40d3000 rw-p 00000000 00:00 0 
+7efea40d3000-7efea42c3000 r--p 00000000 08:05 2493899                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7efea42c3000-7efea4b87000 r-xp 001f0000 08:05 2493899                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7efea4b87000-7efea4d24000 r--p 00ab4000 08:05 2493899                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7efea4d24000-7efea4d25000 ---p 00c51000 08:05 2493899                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7efea4d25000-7efea4db9000 r--p 00c51000 08:05 2493899                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7efea4db9000-7efea4de2000 rw-p 00ce5000 08:05 2493899                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7efea4de2000-7efea4e14000 rw-p 00000000 00:00 0 
+7efea4e14000-7efea4e1b000 r--p 00000000 08:05 2367259                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7efea4e1b000-7efea4e2c000 r-xp 00007000 08:05 2367259                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7efea4e2c000-7efea4e31000 r--p 00018000 08:05 2367259                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7efea4e31000-7efea4e32000 r--p 0001c000 08:05 2367259                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7efea4e32000-7efea4e33000 rw-p 0001d000 08:05 2367259                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7efea4e33000-7efea4e37000 rw-p 00000000 00:00 0 
+7efea4e37000-7efea4e38000 r--p 00000000 08:05 2366491                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7efea4e38000-7efea4e3a000 r-xp 00001000 08:05 2366491                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7efea4e3a000-7efea4e3b000 r--p 00003000 08:05 2366491                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7efea4e3b000-7efea4e3c000 r--p 00003000 08:05 2366491                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7efea4e3c000-7efea4e3d000 rw-p 00004000 08:05 2366491                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7efea4e3d000-7efea4e3f000 r--p 00000000 08:05 2367684                    /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7efea4e3f000-7efea4e50000 r-xp 00002000 08:05 2367684                    /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7efea4e50000-7efea4e56000 r--p 00013000 08:05 2367684                    /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7efea4e56000-7efea4e57000 ---p 00019000 08:05 2367684                    /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7efea4e57000-7efea4e58000 r--p 00019000 08:05 2367684                    /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7efea4e58000-7efea4e59000 rw-p 0001a000 08:05 2367684                    /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7efea4e59000-7efea4e7e000 r--p 00000000 08:05 2366356                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7efea4e7e000-7efea4ff6000 r-xp 00025000 08:05 2366356                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7efea4ff6000-7efea5040000 r--p 0019d000 08:05 2366356                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7efea5040000-7efea5041000 ---p 001e7000 08:05 2366356                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7efea5041000-7efea5044000 r--p 001e7000 08:05 2366356                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7efea5044000-7efea5047000 rw-p 001ea000 08:05 2366356                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7efea5047000-7efea504b000 rw-p 00000000 00:00 0 
+7efea504b000-7efea504c000 r--s 0000d000 08:05 2493916                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunec.jar
+7efea504c000-7efea504d000 rw-p 00000000 00:00 0 
+7efea504d000-7efea5052000 r--p 00000000 08:05 2493895                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7efea5052000-7efea505b000 r-xp 00005000 08:05 2493895                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7efea505b000-7efea505d000 r--p 0000e000 08:05 2493895                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7efea505d000-7efea505f000 r--p 0000f000 08:05 2493895                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7efea505f000-7efea5060000 rw-p 00011000 08:05 2493895                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libverify.so
+7efea5060000-7efea5063000 r--p 00000000 08:05 2493863                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7efea5063000-7efea506d000 r-xp 00003000 08:05 2493863                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7efea506d000-7efea5070000 r--p 0000d000 08:05 2493863                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7efea5070000-7efea5071000 r--p 0000f000 08:05 2493863                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7efea5071000-7efea5072000 rw-p 00010000 08:05 2493863                    /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7efea5072000-7efea5074000 rw-p 00000000 00:00 0 
+7efea5074000-7efea5075000 r--p 00000000 08:05 2366143                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7efea5075000-7efea5098000 r-xp 00001000 08:05 2366143                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7efea5098000-7efea50a0000 r--p 00024000 08:05 2366143                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7efea50a0000-7efea50a1000 r--p 00000000 00:00 0 
+7efea50a1000-7efea50a2000 r--p 0002c000 08:05 2366143                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7efea50a2000-7efea50a3000 rw-p 0002d000 08:05 2366143                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7efea50a3000-7efea50a4000 rw-p 00000000 00:00 0 
+7fff42360000-7fff42382000 rw-p 00000000 00:00 0                          [stack]
+7fff423b4000-7fff423b7000 r--p 00000000 00:00 0                          [vvar]
+7fff423b7000-7fff423b8000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Xmx1g 
+java_command: org.apache.spark.deploy.SparkSubmit pyspark-shell
+java_class_path (initial): /home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/conf:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/httpclient-4.5.6.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/parquet-hadoop-bundle-1.6.0.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/JavaEWAH-0.3.2.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-module-jaxb-annotations-2.6.7.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/commons-lang-2.6.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/zookeeper-3.4.6.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/lz4-java-1.4.0.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/metrics-jvm-3.1.5.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jackson-core-asl-1.9.13.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/libthrift-0.9.3.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/stringtemplate-3.2.1.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/scala-xml_2.11-1.0.5.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/json4s-core_2.11-3.5.3.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/derby-10.12.1.1.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/arrow-memory-0.10.0.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/javax.servlet-api-3.1.0.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/jersey-media-jaxb-2.22.2.jar:/home/eduard/anaconda3/envs/streaming/lib/python3.7/site-packages/pyspark/jars/hadoop-auth-2.7.3.jar:/home/eduard/anaconda3/env
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/home/eduard/anaconda3/envs/streaming/bin:/home/eduard/anaconda3/condabin:/home/eduard/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+USERNAME=eduard
+SHELL=/bin/bash
+DISPLAY=:1
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xa90220], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xa90220], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x8e9110], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x8e9110], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x8e9110], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x8e9110], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x8e8fc0], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x8e9390], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: SIG_IGN, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGTERM: [libjvm.so+0x8e9390], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x8e9390], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04 LTS"
+
+uname:Linux 5.4.0-29-generic #33-Ubuntu SMP Wed Apr 29 14:32:27 UTC 2020 x86_64
+libc:glibc 2.31 NPTL 2.31 
+rlimit: STACK 8192k, CORE 0k, NPROC 31451, NOFILE 1048576, AS infinity
+load average:0,18 0,20 0,59
+
+/proc/meminfo:
+MemTotal:        8107828 kB
+MemFree:         1092628 kB
+MemAvailable:    2119128 kB
+Buffers:           95288 kB
+Cached:          1727672 kB
+SwapCached:         3856 kB
+Active:          4627164 kB
+Inactive:        1788664 kB
+Active(anon):    3907028 kB
+Inactive(anon):  1317148 kB
+Active(file):     720136 kB
+Inactive(file):   471516 kB
+Unevictable:          32 kB
+Mlocked:              32 kB
+SwapTotal:       2097148 kB
+SwapFree:        1974012 kB
+Dirty:               288 kB
+Writeback:             0 kB
+AnonPages:       4590216 kB
+Mapped:          1400664 kB
+Shmem:            639016 kB
+KReclaimable:     108352 kB
+Slab:             270292 kB
+SReclaimable:     108352 kB
+SUnreclaim:       161940 kB
+KernelStack:       21280 kB
+PageTables:        49784 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     6151060 kB
+Committed_AS:   13960020 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       61564 kB
+VmallocChunk:          0 kB
+Percpu:             3040 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      567268 kB
+DirectMap2M:     7776256 kB
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-3
+cpu_memory_nodes: 0
+active_processor_count: 4
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 5395189760
+memory_max_usage_in_bytes: 6398263296
+
+
+CPU:total 4 (initial active 4) (4 cores per cpu, 1 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, erms, tsc, tscinvbit, tscinv
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3570K CPU @ 3.40GHz
+stepping	: 9
+microcode	: 0x21
+cpu MHz		: 2504.446
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 6820.38
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3570K CPU @ 3.40GHz
+stepping	: 9
+microcode	: 0x21
+cpu MHz		: 2531.682
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 6820.38
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3570K CPU @ 3.40GHz
+stepping	: 9
+microcode	: 0x21
+cpu MHz		: 2297.148
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 6820.38
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3570K CPU @ 3.40GHz
+stepping	: 9
+microcode	: 0x21
+cpu MHz		: 2694.886
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 6820.38
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 8107828k(1092376k free), swap 2097148k(1974012k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.252-b09) for linux-amd64 JRE (1.8.0_252-8u252-b09-1ubuntu1-b09), built on Apr 16 2020 08:47:49 by "buildd" with gcc 9.3.0
+
+time: Sat May 16 17:29:36 2020
+timezone: EEST
+elapsed time: 3745 seconds (0d 1h 2m 25s)
+
