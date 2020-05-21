@@ -48,10 +48,11 @@ for i in range(0, len(data_source), batch_size):
         batch_data = data_source[i: i + batch_size]
     else:
         batch_data = data_source[i:]
+    print('==+')
     uri_df = spark.createDataFrame(batch_data, ["label", "uri"])
     keras_pred_df = transformer.transform(uri_df)
     to_save = keras_pred_df.select("label", "features") \
         .rdd.map(lambda x: LabeledPoint(x.label, L2_NORM(x.features)))
     yourRDD = yourRDD.union(to_save)
-
-MLUtils.saveAsLibSVMFile(yourRDD, "./dataset/features/")
+print('++++++++++++++++++++++++++++++++DAAAAAAAAAAAAAAAAA+++++++++++++++++++++++++++')
+# MLUtils.saveAsLibSVMFile(yourRDD, "./dataset/features/")
