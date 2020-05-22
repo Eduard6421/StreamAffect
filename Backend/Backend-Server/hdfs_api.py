@@ -5,11 +5,16 @@ import io
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from PIL import Image
 import cv2 as cv
+from kafka import KafkaProducer
+
+kafka_host = 'localhost'
+kafka_port = '9092'
+producer = KafkaProducer(bootstrap_servers='127.0.0.1:9092')
 
 
-HOST = '84.117.81.51'
+HOST = '5.12.214.167'
 PORT = '9870'
-USERNAME = 'root'
+USERNAME = 'adria'
 
 hdfs = PyWebHdfsClient(host=HOST,port=PORT, user_name=USERNAME)
 
@@ -58,8 +63,9 @@ def extract_sentiment(image_name):
 	return re.search(r"[a-z]*", image_name, re.IGNORECASE).group()
 
 
-imgs = read_images()
-
-img_name, img = read_image(imgs[0])
-
-write_image(img_name, img, extract_sentiment(img_name))
+def main():
+	imgs = read_images()
+	img_name, img = read_image(imgs[0])
+	write_image(img_name, img, extract_sentiment(img_name))
+	producer.send('spark',img_name.encode())
+	producer.flush()
