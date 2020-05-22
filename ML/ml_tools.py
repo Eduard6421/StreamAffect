@@ -12,7 +12,7 @@ import numpy as np
 from pyspark.sql.functions import lit
 import tensorflow as tf
 from classification_models.scene_model import VGG16_Hybrid_1365
-from utils import preprocess_data, CustomSparkModel
+from utils import preprocess_datas, CustomSparkModel
 
 
 class ML_Tools:
@@ -93,5 +93,5 @@ class ML_Tools:
         sess = tf.Session(config=config)
         keras.backend.tensorflow_backend.set_session(sess)
 
-    def predict(self, data):
-        return self.nn_model.predict(np.expand_dims(preprocess_data(data), axis=0))
+    def predict(self, datas):
+        return self.nn_model.predict(preprocess_datas(datas))
