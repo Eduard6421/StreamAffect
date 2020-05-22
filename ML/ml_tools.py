@@ -12,7 +12,7 @@ import numpy as np
 from pyspark.sql.functions import lit
 import tensorflow as tf
 from classification_models.scene_model import VGG16_Hybrid_1365
-from utils import preprocess_datas, CustomSparkModel
+from utils import preprocess_datas, CustomSparkModel, preprocess_data
 
 
 class ML_Tools:

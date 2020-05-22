@@ -37,3 +37,10 @@ def preprocess_datas(datas):
     for i in range(images.shape[0]):
         list_.append(cv.resize(images[i], (224, 224)))
     return np.array(list_, dtype=np.float32)
+
+
+def preprocess_data(data):
+    data = np.reshape(data, (416, 416, 3))
+    image = np.array(data, np.uint8)
+    image = cv.resize(image, (224, 224))
+    return image.reshape((224, 224, 3))
