@@ -1,17 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createBrowserHistory } from "history";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+
+// styles
+import "assets/css/bootstrap.min.css";
+import "assets/scss/paper-kit.scss";
+import "assets/demo/demo.css";
+// pages
+import Index from "views/Index.js";
+// others
 
 ReactDOM.render(
-  <Router history={hist}>
+  <BrowserRouter>
     <Switch>
-
+      <Route path="/index" render={props => <Index {...props} />} />
+      <Redirect to="/index" />
     </Switch>
-  </Router>,
-  document.getElementById('root')
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
