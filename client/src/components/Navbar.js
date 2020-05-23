@@ -73,7 +73,11 @@ function IndexNavbar() {
           isOpen={navbarCollapse}
         >
           <Nav navbar>
-            
+            <NavItem>
+              <NavLink href="/contribute">
+                <i className="nc-icon nc-book-bookmark" /> Contribute
+              </NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Container>

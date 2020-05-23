@@ -4,11 +4,11 @@ import React from "react";
 
 // core components
 import Navbar from "components/Navbar.js";
-import Header from "components/Header.js";
+import ContributeHeader from "components/ContributeHeader.js";
 
 // index sections
 
-function Index() {
+function Contribute() {
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("index");
@@ -19,11 +19,11 @@ function Index() {
   return (
     <>
       <Navbar />
-      <Header />
+      <ContributeHeader />
       <div className="main">
       </div>
     </>
   );
 }
 
-export default Index;
+export default Contribute;

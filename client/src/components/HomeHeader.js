@@ -2,12 +2,12 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 
 // core components
 import ImageUpload from "components/ImageUpload.js";
 
-function IndexHeader() {
+function HomeHeader() {
   return (
     <>
       <div
@@ -18,15 +18,14 @@ function IndexHeader() {
         }}
       >
         <div className="filter" />
-        <div className="content-center" >
+        <div className="content-center">
           <Container>
             <div className="title-brand">
               {/* <h1 className="presentation-title">Paper Kit React</h1> */}
             </div>
             <h2 className="presentation-subtitle text-center">
-              Upload one image and let us guess your emotion!
+              Upload one image below and let's compute some predictions!
             </h2>
-            <br />
             <br />
             <Row>
               <Col md="3" sm="2"></Col>
@@ -34,6 +33,17 @@ function IndexHeader() {
                 <ImageUpload />
               </Col>
               <Col md="3" sm="2"></Col>
+            </Row>
+            <br />
+            <Row>
+              <Col md="3" sm="3"></Col>
+              <Col md="6" sm="6">
+                <Button className="btn-round" color="primary" type="button">
+                  <i className="fa fa-play"></i>
+                  Let's start
+                </Button>
+              </Col>
+              <Col md="3" sm="3"></Col>
             </Row>
           </Container>
         </div>
@@ -48,4 +58,4 @@ function IndexHeader() {
   );
 }
 
-export default IndexHeader;
+export default HomeHeader;

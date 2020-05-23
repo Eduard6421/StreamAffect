@@ -7,14 +7,16 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/paper-kit.scss";
 import "assets/demo/demo.css";
 // pages
-import Index from "views/Index.js";
+import Home from "views/Home.js";
+import Contribute from "views/Contribute.js"
 // others
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/index" render={props => <Index {...props} />} />
-      <Redirect to="/index" />
+      <Route path="/contribute" render={props => <Contribute {...props} />} />
+      <Route path="/predict" render={props => <Home {...props} />} />
+      <Redirect to="/predict" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
