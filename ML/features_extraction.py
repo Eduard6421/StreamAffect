@@ -3,6 +3,8 @@ import glob
 import os
 import pdb
 import random
+from io import StringIO
+
 import keras
 from PIL import Image
 from keras.backend import set_session
@@ -11,108 +13,198 @@ from keras.engine.saving import load_model
 from keras.applications.vgg16 import preprocess_input
 from keras.preprocessing.image import img_to_array, load_img
 from pyspark import SparkContext
+from pyspark.ml.image import ImageSchema
+from pyspark.ml.linalg import VectorUDT
 from pyspark.mllib.evaluation import MulticlassMetrics
 from pyspark.mllib.regression import LabeledPoint
 from pyspark.shell import sc, spark
 from pyspark.sql import SparkSession
 from pyspark.shell import spark, sc
+from pyspark.sql.types import StructType, StructField, StringType, ArrayType, DoubleType, FloatType
 from utils import emotions
 import numpy as np
-from pyspark.sql.functions import lit
-import tensorflow as tf
-from classification_models.scene_model import VGG16_Hybrid_1365
 from utils import preprocess_data, CustomSparkModel
 from sparkdl import KerasImageFileTransformer
+import math
+from pyspark.sql import functions as F
+from pyspark.ml.classification import LogisticRegression, OneVsRest, LinearSVC, OneVsRestModel
+from pyspark.mllib.evaluation import MulticlassMetrics
+
+sc.setLogLevel("WARN")
 
 
-def load_data(uri):
-    sc = SparkContext("local", "First App")
-    img = sc.read.format('image').load(uri)
-    print(img)
-    img = img.select('image.data').take(1)[0][0]
-    img = np.array(img)
-    img = np.reshape(img, (416, 416, 3))
-    # img = np.zeros((128, 128, 3), dtype=np.float32)
-
-    img = np.array(img, np.uint8)
-    img = cv.resize(img, (128, 128))
-    img = np.array(img, dtype=np.float32)
-    # img = Image.fromarray(img)
-    # img = img_to_array(img)
-    image = np.expand_dims(img, axis=0)
-
-    return preprocess_input(image)
-
-class MlTools:
+class LogisticRegressionV:
 
     def __init__(self, model_path=None):
         self.hdfs_dataset = "hdfs://localhost:9000/emotions_dataset/"
 
         if model_path is None:
-            data = self.get_train_data()
-            # self.nn_model = self.train(data)
+            self.data = self.get_train_data()
+            print('TRAINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN')
+            self.path_model, self.logistic_model = self.train_model(self.data)
         else:
-            keras_model = load_model(model_path)
-            self.nn_model = CustomSparkModel(keras_model, frequency='batch', mode='synchronous')
+            self.logistic_model = OneVsRestModel.load(model_path)
 
     def get_train_data(self):
-        d = None
         base_folder_features = './dataset/'
-        images_path          = []
+        images_path = []
+
         for key in emotions:
-            # images = spark.read.format("image").load("hdfs://localhost:9000/emotions_dataset/" + emotions[key] + "/*")
-            # images = spark.read.format("image").load("./dataset/" + emotions[key] + "/*")
-            # images = images.select("image.data").limit(1000)
-            # images = images.withColumn("label", lit(float(key)))
-            # images.show(n=5)
-            # if d is None:
-            #     d = images
-            # else:
-            #     d = d.unionAll(images)
             images_names = glob.glob(os.path.join(base_folder_features + emotions[key] + "/*"))
-            i = [(key, path_image) for path_image in images_names]
+            i = [(float(key), path_image) for path_image in images_names]
             images_path += i
-        # d = d.limit(30000)
-        # data = d.rdd.map(lambda value: (preprocess_data(value.data), float(value.label)))
-        # d.collect()
+
         transformer = KerasImageFileTransformer(inputCol="uri", outputCol="features",
                                                 modelFile='models/vgg16.hdf5',
-                                                imageLoader=load_data,
+                                                imageLoader=self.load_data,
                                                 outputMode="vector")
-        batch_size = 1
-        your_rdd = sc.emptyRDD()
-        for i in range(0, 1, batch_size):
+        batch_size = 500
+        # images_path = images_path[:batch_size]
+        schema = StructType([
+            StructField("label", FloatType(), True),
+            StructField("features", VectorUDT(), True)])
+
+        empty = spark.createDataFrame(sc.emptyRDD(), schema)
+        for i in range(0, len(images_path), batch_size):
             if i + batch_size < len(images_path):
                 batch_data = images_path[i: i + batch_size]
             else:
                 batch_data = images_path[i:]
             data_df = spark.createDataFrame(batch_data, ["label", "uri"])
             keras_pred_df = transformer.transform(data_df)
-            keras_pred_df.show()
-            to_save = keras_pred_df.select("label", "features") \
-                .rdd.map(lambda x: LabeledPoint(x.label, self.l2_norm(x.features)))
-            your_rdd = your_rdd.union(to_save)
+            data_frame = keras_pred_df.select("label", "features")
+            # .rdd.map(lambda x: LabeledPoint(x.label, self.l2_norm(x.features)))
+            empty = empty.unionAll(data_frame)
 
-        return your_rdd
+        empty.limit(90000)
+        return empty
+
+    def train_model(self, input_data):
+        splits = input_data.randomSplit([0.70, 0.30])
+        train = splits[0]
+        test = splits[1]
+        train.show()
+
+        # instantiate the base classifier.
+        lr = LogisticRegression(maxIter=1, tol=1E-6, regParam=0.1, fitIntercept=True)
+
+        # instantiate the One Vs Rest Classifier.
+        ovr = OneVsRest(classifier=lr)
+
+        # train the multiclass model.
+        ovr_model = ovr.fit(train)
+
+        # score the model on test data.
+        predictions = ovr_model.transform(test)
+        prediction_and_labels = predictions.select(['prediction', 'label']).rdd
+        metrics = MulticlassMetrics(prediction_and_labels)
+        accuracy = metrics.accuracy
+
+        # save model
+        file_name = "LogisticRegression_model_" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        filepath = "./models/" + file_name + "_" + str(accuracy)
+        ovr_model.write().overwrite().save(filepath)
+        return filepath, ovr_model
+
+    @staticmethod
+    def load_data(uri):
+        img = ImageSchema.readImages(uri)
+        img = img.select('image.data').collect()
+        img = np.reshape(img, (416, 416, 3))
+        img = np.array(img, np.uint8)
+        img = cv.resize(img, (128, 128))
+        img = np.array(img, dtype=np.float32)
+        image = np.expand_dims(img, axis=0)
+
+        return preprocess_input(image)
+
+    @staticmethod
+    def load_data_predict(image):
+        img = np.array(image)
+        img = np.reshape(img, (416, 416, 3))
+        img = np.array(img, np.uint8)
+        img = cv.resize(img, (128, 128))
+        img = np.array(img, dtype=np.float32)
+        image = np.expand_dims(img, axis=0)
+
+        return preprocess_input(image)
+
     @staticmethod
     def l2_norm(X):
         l2_norm = np.sqrt(np.sum(X * X, axis=0))
         custom_normalisation = np.true_divide(X, l2_norm)
         return custom_normalisation
 
-    # @staticmethod
-
     def predict(self, data):
-        return self.nn_model.predict(np.expand_dims(preprocess_data(data), axis=0))
+        data = np.reshape(data, (-1, 416, 416, 3))
+        transformer = KerasImageFileTransformer(inputCol="image", outputCol="features",
+                                                modelFile='models/vgg16.hdf5',
+                                                imageLoader=self.load_data_predict,
+                                                outputMode="vector")
 
-ml = MlTools()
+        schema = StructType([
+            StructField("features", VectorUDT(), True)])
+
+        empty_df = spark.createDataFrame(sc.emptyRDD(), schema)
+        for image in data:
+            image = image.reshape(-1, 416 * 416 * 3)
+            image = image.tolist()
+            data_df = spark.createDataFrame(map(lambda x: (x,), image), ["image"])
+            data_df.show()
+            keras_pred_df = transformer.transform(data_df)
+            data_frame = keras_pred_df.select("features")
+            empty_df = empty_df.unionAll(data_frame)
+
+        empty_df.limit(90000)
+        # score the model on test data.
+        predictions = self.logistic_model.transform(empty_df)
+
+        # return list of prediction
+        predictions = predictions.select(['prediction']).collect()
+        return predictions
+
+
+def load_data_image(uri):
+    image = img_to_array(load_img(uri, target_size=(416, 416)))
+    return image
+
+
+# #TRAIN
+lg = LogisticRegressionV()
+print(lg.data.count())
+print(lg.path_model)
+lg.data.show()
+
+# PREDICT
+# lg = LogisticRegressionV('./models/LogisticRegression_model_20200522-230614_1.0')
+# images = []
+# paths = ["./dataset/anger/anger154.jpg", "./dataset/happy/happy154.jpg"]
+# for i in paths:
+#     img = load_data_image(i)
+#     images.append(img)
+# images = np.array(images)
+# prediction = lg.predict(images)
+# print(prediction)
+
+
+# df = np.concatenate([np.random.randint(0,2, size=(1000)), np.random.randn(1000), 3*np.random.randn(1000)+2, 6*np.random.randn(1000)-2]).reshape(1000,-1)
+# print(df.shape)
+
+
 # train = ml.get_train_data()
 
-# img = spark.read.format('image').load('./dataset/anger\\anger154.jpg')
-# img = img.select('image.data').take(1)[0][0]
+# images = sc.binaryFiles('./dataset/anger/')
+# image_to_array = lambda rawdata: np.asarray(Image.open(StringIO(rawdata)))
+# img = images.values().map(image_to_array).toDF().show()
+# print(img)
 # img = np.reshape(img, (416, 416, 3))
 # img = np.array(img, np.uint8)
 # cv.imshow('image', img)
 # cv.waitKey(0)
 
-
+# img = ImageSchema.readImages("./dataset/anger/anger154.jpg")
+# img = img.select('image.data').collect()
+# img = np.reshape(img, (416, 416, 3))
+# img = np.array(img, np.uint8)
+# cv.imshow('image', img)
+# cv.waitKey(0)
