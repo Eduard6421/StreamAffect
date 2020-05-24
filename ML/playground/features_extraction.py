@@ -51,7 +51,8 @@ class LogisticRegressionV:
                                                 modelFile='models/vgg16.hdf5',
                                                 imageLoader=self.load_data,
                                                 outputMode="vector")
-        batch_size = 500
+        batch_size  = 10
+        images_path = images_path[:10]
         schema = StructType([
             StructField("label", FloatType(), True),
             StructField("features", VectorUDT(), True)])
@@ -72,17 +73,17 @@ class LogisticRegressionV:
 
         rdd = features_df.rdd
         # empty.limit(90000)
-        print('=============SAVE FEATURES================')
-        MLUtils.saveAsLibSVMFile(rdd, "./dataset/features/")
+        # print('=============SAVE FEATURES================')
+        # MLUtils.saveAsLibSVMFile(rdd, "./dataset/features/")
+        #
+        # base_folder_features = './dataset/features'
+        # features = glob.glob(os.path.join(base_folder_features, "part*"))
+        #
+        # input_data = spark.read.format("libsvm") \
+        #     .load(features)
+        # input_data.show(n=10)
 
-        base_folder_features = './dataset/features'
-        features = glob.glob(os.path.join(base_folder_features, "part*"))
-
-        input_data = spark.read.format("libsvm") \
-            .load(features)
-        input_data.show(n=10)
-
-        return input_data
+        return features_df
 
     def train_model(self, input_data):
         print('=============SPLIT DATA================')
@@ -99,10 +100,10 @@ class LogisticRegressionV:
         ovr = OneVsRest(classifier=lr)
 
         # train the multiclass model.
-        ovr_model = ovr.fit(input_data.limit(10))
+        ovr_model = ovr.fit(train)
 
         # score the model on test data.
-        predictions = ovr_model.transform(input_data.limit(10))
+        predictions = ovr_model.transform(test)
         prediction_and_labels = predictions.select(['prediction', 'label']).rdd
         metrics = MulticlassMetrics(prediction_and_labels)
         accuracy = metrics.accuracy
@@ -168,7 +169,13 @@ class LogisticRegressionV:
 
         # return list of prediction
         predictions = predictions.select(['prediction']).collect()
-        return predictions
+
+        list_pred = []
+        for pred in predictions:
+            new = np.zeros((5))
+            new[int(pred[0])] = 1
+            list_pred.append(new)
+        return list_pred
 
 
 def load_data_image(uri):
@@ -177,21 +184,21 @@ def load_data_image(uri):
 
 
 # #TRAIN
-lg = LogisticRegressionV()
-print(lg.data.count())
-print(lg.path_model)
-lg.data.show()
+# lg = LogisticRegressionV()
+# print(lg.data.count())
+# print(lg.path_model)
+# lg.data.show()
 
 # PREDICT
-# lg = LogisticRegressionV('./models/LogisticRegression_model_20200522-230614_1.0')
-# images = []
-# paths = ["./dataset/anger/anger154.jpg", "./dataset/happy/happy154.jpg"]
-# for i in paths:
-#     img = load_data_image(i)
-#     images.append(img)
-# images = np.array(images)
-# prediction = lg.predict(images)
-# print(prediction)
+lg = LogisticRegressionV('./models/LogisticRegression_model_20200524-145217_1.0')
+images = []
+paths = ["./dataset/anger/anger154.jpg", "./dataset/happy/happy154.jpg"]
+for i in paths:
+    img = load_data_image(i)
+    images.append(img)
+images = np.array(images)
+prediction = lg.predict(images)
+print(prediction)
 
 
 # df = np.concatenate([np.random.randint(0,2, size=(1000)), np.random.randn(1000), 3*np.random.randn(1000)+2, 6*np.random.randn(1000)-2]).reshape(1000,-1)
