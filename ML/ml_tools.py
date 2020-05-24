@@ -22,10 +22,10 @@ class ML_Tools:
 
         if model_path is None:
             data = self.__get_train_data()
-            self.__set_gpu_config()
+            self.__set_gpu_config(gpu_fraction=0.8)
             self.nn_model = self.train(data)
         else:
-            self.__set_gpu_config()
+            self.__set_gpu_config(gpu_fraction=0.2)
             keras_model = load_model(model_path)
             self.nn_model = CustomSparkModel(keras_model, frequency='batch', mode='synchronous')
 
@@ -86,10 +86,10 @@ class ML_Tools:
         return estimator
 
     @staticmethod
-    def __set_gpu_config():
+    def __set_gpu_config(gpu_fraction):
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
-        config.gpu_options.per_process_gpu_memory_fraction = 0.8
+        config.gpu_options.per_process_gpu_memory_fraction = gpu_fraction
         sess = tf.Session(config=config)
         keras.backend.tensorflow_backend.set_session(sess)
 

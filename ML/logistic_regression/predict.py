@@ -17,12 +17,16 @@ def load_data_predict(image):
 
     return preprocess_input(image)
 
-def predict(data, model_path):
 
+def predict(data, model_path):
     logistic_model = OneVsRestModel.load(model_path)
     data = np.reshape(data, (-1, 416, 416, 3))
+
+    print(data.shape)
+    print("*" * 100)
+
     transformer = KerasImageFileTransformer(inputCol="image", outputCol="features",
-                                            modelFile='models/vgg16.hdf5',
+                                            modelFile='./models/vgg16.hdf5',
                                             imageLoader=load_data_predict,
                                             outputMode="vector")
 

@@ -29,7 +29,7 @@ def load_data(uri):
 
 
 transformer = KerasImageFileTransformer(inputCol="uri", outputCol="features",
-                                        modelFile='models/vgg16.hdf5',
+                                        modelFile='../models/vgg16.hdf5',
                                         imageLoader=load_data,
                                         outputMode="vector")
 
