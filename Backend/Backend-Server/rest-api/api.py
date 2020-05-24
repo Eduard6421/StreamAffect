@@ -1,29 +1,60 @@
 from flask import Flask
+from flask import request
+from flask import jsonify
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
+from kafka import KafkaProducer
+import gridfs
+from bson.objectid import ObjectId
+
 
 
 import glob
 import os
 import re
 import io
+import string
+import random
+import json
+import base64
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from PIL import Image
 import cv2 as cv
+import numpy as np
+
+
+MONGODB_HOST = '188.26.164.67:27017'
+MONGODB_USER = 'user'
+MONGODB_PASSWORD = 'password'
+MONGODB_DATABASE = 'mydatabase'
+MONGODB_AUTH_MECHANISM = 'SCRAM-SHA-1'
+
+HDFS_HOST = '188.26.164.67'
+HDFS_PORT = '9870'
+HDFS_USERNAME = 'adria'
+
+KAFKA_HOST = '84.117.81.51'
+KAFKA_PORT = '9092'
+
+#producer = KafkaProducer(bootstrap_servers=KAFKA_HOST + ':' + KAFKA_PORT)
+
+hdfs = PyWebHdfsClient(host=HDFS_HOST, port=HDFS_PORT, user_name=HDFS_USERNAME)
+
+
+app = Flask(__name__)
+client = MongoClient(MONGODB_HOST,
+			username=MONGODB_USER,
+			password=MONGODB_PASSWORD,
+			authSource=MONGODB_DATABASE,
+			authMechanism=MONGODB_AUTH_MECHANISM)
+db = client[MONGODB_DATABASE] #Select the database
+predictions = db["predictions"] #Select the collection name
+images = db["fs.files"]
+fs = gridfs.GridFS(db)
 
 
 
-HOST = '84.117.81.51'
-PORT = '9870'
-USERNAME = 'root'
-
-hdfs = PyWebHdfsClient(host=HOST,port=PORT, user_name=USERNAME)
-
-
-def write_image(image_name, image, sentiment=None):
-
-	#image_path = 'dataset/' + sentiment + '/' + image.name()
-	image_path = 'inference/' + image_name
+def write_image(image_path, image, sentiment=None):
 
 	hdfs.create_file(image_path, image_to_binary(cv.cvtColor(image, cv.COLOR_BGR2RGB)))
 
@@ -64,29 +95,86 @@ def extract_sentiment(image_name):
 	return re.search(r"[a-z]*", image_name, re.IGNORECASE).group()
 
 
+def randomString(stringLength=8):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
 
-app = Flask(__name__)
-client = MongoClient("mongodb://127.0.0.1:27017") #host uri
-db = client.mymongodb #Select the database
-images = db.images #Select the collection name
+
+def get_file_object(file_id):
+  out = fs.get(ObjectId(file_id)).read()
+  return out  
+
+
+def get_byte_image(image_path='placeholder.jpg'):
+	img = Image.open(image_path, mode='r')
+	img_byte_arr = io.BytesIO()
+	img.save(img_byte_arr, format='JPEG')
+	encoded_img = base64.encodebytes(img_byte_arr.getvalue()).decode('ascii')
+	return encoded_img
+
 
 
 @app.route('/upload', methods=['POST'])
 def upload_pic():
-    file = request.files['file']
-    filename = secure_filename(file.filename)
 
-    write_image(file, filename)
+	nparr = np.fromstring(request.data, np.uint8)
+	img = cv.imdecode(nparr, cv.IMREAD_COLOR)
+
+	filename = randomString() + '.jpg'
+
+	image_path = 'inference/' + filename
+	write_image(image_path, img)
+
+	string_to_send = 'hdfs://localhost:9000/' + image_path
+	#producer.send('spark', str.encode(string_to_send))
+	#producer.flush()
+
+
+	return {"status" : "OK"}
+
+
 
 
 
 @app.route('/list', methods=['GET'])
 def list_images():
 
-	image_list = images.find()
 
-	return image_list
+	predictions_list = predictions.find()
+	res_arr = []
+	for p in predictions_list:
+
+		data = {}
+
+		path = p['img']
+		path = path.replace('hdfs://localhost:9000/', '')
+
+		file = hdfs.read_file(path)
+
+		img_name = path.replace('inference/', '')
+
+		if not os.path.exists(img_name):
+
+			f = open(img_name, 'wb')
+			f.write(file)
+			f.close()
+
+		img = get_byte_image(img_name)
+		pred = p['predictions']
+
+		data['image'] = img
+		data['predictions'] = pred
+
+		res_arr.append(data)
+
+	return json.dumps(res_arr)
+
+
+
 
 
 if __name__ == "__main__":
-    app.run()
+
+	app.run()
+
+
