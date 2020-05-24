@@ -1,12 +1,13 @@
 import { handleResponse } from "helpers/handle-response.js";
 
-const apiUrl = "http://localhost:4000";
+// port Edi
+const apiUrl = "http://84.117.81.51:5000";
 
 export const predictionService = {
-    predict
+    upload
 }
 
-function predict() {
+function upload() {
     const requestOptions = {
         method: "POST",
         // headers: ""

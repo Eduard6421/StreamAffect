@@ -8,6 +8,16 @@ import { Container, Row, Col, Button } from "reactstrap";
 import ImageUpload from "components/ImageUpload.js";
 
 function HomeHeader() {
+  
+  state = {
+    uploading: false,
+    images: []
+  }
+
+  onChange = e => {
+    const files = Array.from(e.target.files)
+  }
+
   return (
     <>
       <div
