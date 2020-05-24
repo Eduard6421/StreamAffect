@@ -2,32 +2,24 @@ import datetime
 import glob
 import os
 import pdb
-import random
 from io import StringIO
 
-import keras
-from PIL import Image
-from keras.backend import set_session
 import cv2 as cv
-from keras.engine.saving import load_model
 from keras.applications.vgg16 import preprocess_input
 from keras.preprocessing.image import img_to_array, load_img
-from pyspark import SparkContext
 from pyspark.ml.image import ImageSchema
 from pyspark.ml.linalg import VectorUDT
 from pyspark.mllib.evaluation import MulticlassMetrics
 from pyspark.mllib.regression import LabeledPoint
+from pyspark.mllib.util import MLUtils
 from pyspark.shell import sc, spark
 from pyspark.sql import SparkSession
 from pyspark.shell import spark, sc
 from pyspark.sql.types import StructType, StructField, StringType, ArrayType, DoubleType, FloatType
 from utils import emotions
 import numpy as np
-from utils import preprocess_data, CustomSparkModel
 from sparkdl import KerasImageFileTransformer
-import math
-from pyspark.sql import functions as F
-from pyspark.ml.classification import LogisticRegression, OneVsRest, LinearSVC, OneVsRestModel
+from pyspark.ml.classification import LogisticRegression, OneVsRest, OneVsRestModel, SparkContext
 from pyspark.mllib.evaluation import MulticlassMetrics
 
 sc.setLogLevel("WARN")
@@ -46,6 +38,7 @@ class LogisticRegressionV:
             self.logistic_model = OneVsRestModel.load(model_path)
 
     def get_train_data(self):
+        # spc = SparkContext.getOrCreate()
         base_folder_features = './dataset/'
         images_path = []
 
@@ -59,32 +52,46 @@ class LogisticRegressionV:
                                                 imageLoader=self.load_data,
                                                 outputMode="vector")
         batch_size = 500
-        # images_path = images_path[:batch_size]
         schema = StructType([
             StructField("label", FloatType(), True),
             StructField("features", VectorUDT(), True)])
 
-        empty = spark.createDataFrame(sc.emptyRDD(), schema)
+        features_df = spark.createDataFrame(sc.emptyRDD(), schema)
+        # rdd = spc.emptyRDD()
         for i in range(0, len(images_path), batch_size):
             if i + batch_size < len(images_path):
                 batch_data = images_path[i: i + batch_size]
             else:
                 batch_data = images_path[i:]
             data_df = spark.createDataFrame(batch_data, ["label", "uri"])
-            keras_pred_df = transformer.transform(data_df)
-            data_frame = keras_pred_df.select("label", "features")
-            # .rdd.map(lambda x: LabeledPoint(x.label, self.l2_norm(x.features)))
-            empty = empty.unionAll(data_frame)
+            features = transformer.transform(data_df)
+            data_frame = features.select("label", "features")
+                            # .rdd.map(lambda x: LabeledPoint(x.label, self.l2_norm(x.features)))
+            features_df = features_df.unionAll(data_frame)
+            # rdd = rdd.union(data_frame)
 
-        empty.limit(90000)
-        return empty
+        rdd = features_df.rdd
+        # empty.limit(90000)
+        print('=============SAVE FEATURES================')
+        MLUtils.saveAsLibSVMFile(rdd, "./dataset/features/")
+
+        base_folder_features = './dataset/features'
+        features = glob.glob(os.path.join(base_folder_features, "part*"))
+
+        input_data = spark.read.format("libsvm") \
+            .load(features)
+        input_data.show(n=10)
+
+        return input_data
 
     def train_model(self, input_data):
+        print('=============SPLIT DATA================')
         splits = input_data.randomSplit([0.70, 0.30])
         train = splits[0]
         test = splits[1]
         train.show()
 
+        print('=============TRAIN MODEL DATA================')
         # instantiate the base classifier.
         lr = LogisticRegression(maxIter=1, tol=1E-6, regParam=0.1, fitIntercept=True)
 
@@ -92,10 +99,10 @@ class LogisticRegressionV:
         ovr = OneVsRest(classifier=lr)
 
         # train the multiclass model.
-        ovr_model = ovr.fit(train)
+        ovr_model = ovr.fit(input_data.limit(10))
 
         # score the model on test data.
-        predictions = ovr_model.transform(test)
+        predictions = ovr_model.transform(input_data.limit(10))
         prediction_and_labels = predictions.select(['prediction', 'label']).rdd
         metrics = MulticlassMetrics(prediction_and_labels)
         accuracy = metrics.accuracy
