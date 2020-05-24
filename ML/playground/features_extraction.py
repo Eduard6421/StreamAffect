@@ -16,13 +16,21 @@ from pyspark.shell import sc, spark
 from pyspark.sql import SparkSession
 from pyspark.shell import spark, sc
 from pyspark.sql.types import StructType, StructField, StringType, ArrayType, DoubleType, FloatType
-from utils import emotions
+# from ML.utils import emotions
 import numpy as np
 from sparkdl import KerasImageFileTransformer
 from pyspark.ml.classification import LogisticRegression, OneVsRest, OneVsRestModel, SparkContext
 from pyspark.mllib.evaluation import MulticlassMetrics
 
 sc.setLogLevel("WARN")
+
+emotions = {
+    "0": "anger",
+    "1": "fear",
+    "2": "happy",
+    "3": "horny",
+    "4": "sad"
+}
 
 
 class LogisticRegressionV:
@@ -183,14 +191,14 @@ def load_data_image(uri):
     return image
 
 
-# #TRAIN
+# # #TRAIN
 # lg = LogisticRegressionV()
 # print(lg.data.count())
 # print(lg.path_model)
 # lg.data.show()
 
 # PREDICT
-lg = LogisticRegressionV('./models/LogisticRegression_model_20200524-145217_1.0')
+lg = LogisticRegressionV('./models/LogisticRegression_model_20200524-164012_1.0')
 images = []
 paths = ["./dataset/anger/anger154.jpg", "./dataset/happy/happy154.jpg"]
 for i in paths:

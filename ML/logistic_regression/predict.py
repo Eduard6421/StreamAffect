@@ -1,11 +1,13 @@
-from keras_applications.vgg16 import preprocess_input
-from pyspark.ml.classification import OneVsRestModel
+import cv2 as cv
+from keras.applications.vgg16 import preprocess_input
+from keras.preprocessing.image import img_to_array, load_img
 from pyspark.ml.linalg import VectorUDT
 from pyspark.shell import spark, sc
 from pyspark.sql.types import StructType, StructField
-from sparkdl import KerasImageFileTransformer
 import numpy as np
-import cv2 as cv
+from sparkdl import KerasImageFileTransformer
+from pyspark.ml.classification import OneVsRestModel
+
 
 def load_data_predict(image):
     img = np.array(image)
