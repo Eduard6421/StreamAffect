@@ -56,7 +56,7 @@ class PredictionsList extends React.Component {
           <Container>
             <Col className="ml-auto mr-auto" md="8">
               <div className="section-description text-center">
-                <h2 className="title">All Predictions</h2>
+                <h2 className="title">Latest Predictions</h2>
 
                 <h4>
                   <b>

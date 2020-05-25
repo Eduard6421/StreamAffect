@@ -7,6 +7,8 @@ import { Button } from "reactstrap";
 import defaultImage from "assets/img/image_placeholder.jpeg";
 import defaultAvatar from "assets/img/image_placeholder.jpeg";
 
+import { predictionsService } from "services/predictions.service";
+
 function ImageUpload(props) {
   const [file, setFile] = React.useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = React.useState(
@@ -17,18 +19,21 @@ function ImageUpload(props) {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
-    reader.onloadend = () => {
+    console.log(e.target.files);
+    reader.onload = () => {
+      //console.log(reader.result);
+
+      console.log(reader.result);
+
+      localStorage['image'] = reader.result;
+
       setFile(file);
       setImagePreviewUrl(reader.result);
     };
-    reader.readAsDataURL(file);
+    // reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
   };
-  // const handleSubmit = e => {
-  // e.preventDefault();
-  // this.state.file is the file/image uploaded
-  // in this function you can save the image (this.state.file) on form submit
-  // you have to call it yourself
-  // };
+
   const handleClick = () => {
     fileInput.current.click();
   };

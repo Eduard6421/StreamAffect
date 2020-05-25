@@ -8,29 +8,28 @@ export const predictionsService = {
   getAll,
 };
 
-function timeConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var sec = a.getSeconds();
-  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-  return time;
-}
 
-function upload() {
-  const requestOptions = {
-    method: "POST",
-  };
+function upload(image) {
 
-  return fetch(`${apiUrl}/upload`, requestOptions)
-    .then(handleResponse)
-    .then((data) => {
-      return data;
-    });
+  console.log(image);
+
+  // const requestOptions = {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "image/jpeg"
+  //   },
+  //   body: image,
+  // };
+
+  // return fetch(`${apiUrl}/upload`, requestOptions)
+  //   .then((response) => {
+  //     return response;
+  //   });
+
+    var req = new XMLHttpRequest();
+
+    req.open("POST", "http://84.117.81.51:5000/upload", true);
+    req.send(image);
 }
 
 function getAll() {

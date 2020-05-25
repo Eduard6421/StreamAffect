@@ -7,15 +7,14 @@ import { Container, Row, Col, Button } from "reactstrap";
 // core components
 import ImageUpload from "components/ImageUpload.js";
 
-class HomeHeader extends React.Component {
-  state = {
-    uploading: false,
-    images: [],
-  };
+import { predictionsService } from "services/predictions.service";
 
-  onChange = (e) => {
-    const files = Array.from(e.target.files);
-  };
+class HomeHeader extends React.Component {
+  submitImage() {
+    var image = localStorage["image"];
+
+    predictionsService.upload(image);
+  }
 
   render() {
     return (
@@ -48,7 +47,12 @@ class HomeHeader extends React.Component {
               <Row>
                 <Col md="3" sm="3"></Col>
                 <Col md="6" sm="6">
-                  <Button className="btn-round" color="primary" type="button">
+                  <Button
+                    className="btn-round"
+                    color="primary"
+                    type="button"
+                    onClick={this.submitImage}
+                  >
                     <i className="fa fa-play"></i>
                     Let's start
                   </Button>
