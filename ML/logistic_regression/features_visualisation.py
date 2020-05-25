@@ -43,8 +43,10 @@ def plotInteractive(X, y, title):
 
 
 data, yClass = get_data()
-pca = PCA(n_components=5)
+pca = PCA(n_components=3)
 principalComponents = pca.fit_transform(np.array(data))
-plotInteractive(principalComponents, yClass, 'PCA')
-tsne_result = TSNE(n_components=3).fit_transform(np.array(data))
-plotInteractive(tsne_result, yClass, 't-SNE')
+print(principalComponents)
+# plotInteractive(principalComponents, yClass, 'PCA')
+# tsne_result = TSNE(n_components=3).fit_transform(np.array(data))
+# plotInteractive(tsne_result, yClass, 't-SNE')
+
