@@ -82,16 +82,49 @@ class PredictionsList extends React.Component {
                           <CardBody className="text-center">
                             <CardTitle tag="h5">
                               <b>
+                                {(() => {
+                                  if (item.predictions_lr.anger == 1) {
+                                    return <p>ANGER</p>;
+                                  } else if (item.predictions_lr.fear == 1) {
+                                    return <p>ANGER</p>;
+                                  } else if (item.predictions_lr.happy == 1) {
+                                    return <p>HAPPY</p>;
+                                  } else if (item.predictions_lr.horny == 1) {
+                                    return <p>EXCITED</p>;
+                                  } else if (item.predictions_lr.sad == 1) {
+                                      return <p>SAD</p>
+                                  }
+                                })()}
                                 <br />
-                                <img src={require("assets/icons/happiness.svg")} width="35px" /> - {item.predictions_nn.happy.toFixed(3)}
+                                <img
+                                  src={require("assets/icons/happiness.svg")}
+                                  width="35px"
+                                />{" "}
+                                - {item.predictions_nn.happy.toFixed(3)}
                                 <br />
-                                <img src={require("assets/icons/excited.svg")} width="35px" /> - {item.predictions_nn.horny.toFixed(3)}
+                                <img
+                                  src={require("assets/icons/excited.svg")}
+                                  width="35px"
+                                />{" "}
+                                - {item.predictions_nn.horny.toFixed(3)}
                                 <br />
-                                <img src={require("assets/icons/sad.svg")} width="35px" /> - {item.predictions_nn.sad.toFixed(3)}
+                                <img
+                                  src={require("assets/icons/sad.svg")}
+                                  width="35px"
+                                />{" "}
+                                - {item.predictions_nn.sad.toFixed(3)}
                                 <br />
-                                <img src={require("assets/icons/scared.svg")} width="35px" /> - {item.predictions_nn.fear.toFixed(3)}
+                                <img
+                                  src={require("assets/icons/scared.svg")}
+                                  width="35px"
+                                />{" "}
+                                - {item.predictions_nn.fear.toFixed(3)}
                                 <br />
-                                <img src={require("assets/icons/angry.svg")} width="35px" /> - {item.predictions_nn.anger.toFixed(3)}
+                                <img
+                                  src={require("assets/icons/angry.svg")}
+                                  width="35px"
+                                />{" "}
+                                - {item.predictions_nn.anger.toFixed(3)}
                               </b>
                             </CardTitle>
                           </CardBody>

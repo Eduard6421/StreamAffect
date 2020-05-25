@@ -28,6 +28,8 @@ function ImageUpload(props) {
 
       setFile(file);
       setImagePreviewUrl(evt.target.result);
+
+      document.getElementById("inputImage").remove();
     };
 
     reader.readAsArrayBuffer(file);
@@ -42,7 +44,7 @@ function ImageUpload(props) {
     fileInput.current.value = null;
   };
   return (
-    <div className="fileinput text-center">
+    <div className="fileinput text-center" id="inputImage">
       <input type="file" onChange={handleImageChange} ref={fileInput} />
       <div className={"thumbnail" + (props.avatar ? " img-circle" : "")}>
         <img src={imagePreviewUrl} alt="..." />
