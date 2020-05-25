@@ -124,8 +124,10 @@ def upload_pic():
 
 	nparr = np.fromstring(request.data, np.uint8)
 	img = cv.imdecode(nparr, cv.IMREAD_COLOR)
+	img = cv.resize(img,(416,416))
 
 	filename = randomString() + '.jpg'
+	
 
 	cv.imwrite(filename,img)
 	image_path = 'inference/' + filename
