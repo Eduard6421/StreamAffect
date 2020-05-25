@@ -91,7 +91,7 @@ class PredictionsList extends React.Component {
                                 <br />
                                 <img src={require("assets/icons/scared.svg")} width="35px" /> - {item.predictions_nn.fear.toFixed(3)}
                                 <br />
-                                <img src={require("assets/icons/angry.svg")} width="35px" /> - {item.predictions_nn.angry.toFixed(3)}
+                                <img src={require("assets/icons/angry.svg")} width="35px" /> - {item.predictions_nn.anger.toFixed(3)}
                               </b>
                             </CardTitle>
                           </CardBody>
