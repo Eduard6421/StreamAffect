@@ -22,7 +22,13 @@ from pywebhdfs.webhdfs import PyWebHdfsClient
 from PIL import Image
 import cv2 as cv
 import numpy as np
+from OpenSSL import SSL
 
+
+
+context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
+context.use_privatekey_file('server.key')
+context.use_certificate_file('server.crt')
 
 MONGODB_HOST = '188.26.164.67:27017'
 MONGODB_USER = 'user'
@@ -127,7 +133,6 @@ def upload_pic():
 
 	filename = randomString() + '.jpg'
 
-	cv.imwrite(filename,img)
 	image_path = 'inference/' + filename
 	write_image(image_path, img)
 
@@ -166,11 +171,10 @@ def list_images():
 			f.close()
 
 		img = get_byte_image(img_name)
+		pred = p['predictions']
 
 		data['image'] = img
-		data['created_at'] = p['created_at']
-		data['predictions_nn'] = p['predictions_nn']
-		data['predictions_lr'] = p['predictions_lr']
+		data['predictions'] = pred
 
 		res_arr.append(data)
 
