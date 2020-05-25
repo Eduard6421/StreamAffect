@@ -14,7 +14,7 @@ import Contribute from "views/Contribute.js"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/contribute" render={props => <Contribute {...props} />} />
+      {/* <Route path="/contribute" render={props => <Contribute {...props} />} /> */}
       <Route path="/predict" render={props => <Home {...props} />} />
       <Redirect to="/predict" />
     </Switch>

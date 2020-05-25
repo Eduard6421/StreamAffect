@@ -78,15 +78,22 @@ class PredictionsList extends React.Component {
                     return (
                       <Col className="ml-auto mr-auto" md="4" sm="8">
                         <Card className="card-image card-hover-effect">
-                          <CardImg
-                            alt="..."
-                            src={imageSrc}
-                            top
-                          ></CardImg>
-                          <CardBody>
-                            <CardText>
-                            <i class="fa fa-frown-o"></i>
-                            </CardText>
+                          <CardImg alt="..." src={imageSrc} top></CardImg>
+                          <CardBody className="text-center">
+                            <CardTitle tag="h5">
+                              <b>
+                                <br />
+                                <img src={require("assets/icons/happiness.svg")} width="35px" /> - {item.predictions_nn.happy.toFixed(3)}
+                                <br />
+                                <img src={require("assets/icons/excited.svg")} width="35px" /> - {item.predictions_nn.horny.toFixed(3)}
+                                <br />
+                                <img src={require("assets/icons/sad.svg")} width="35px" /> - {item.predictions_nn.sad.toFixed(3)}
+                                <br />
+                                <img src={require("assets/icons/scared.svg")} width="35px" /> - {item.predictions_nn.fear.toFixed(3)}
+                                <br />
+                                <img src={require("assets/icons/angry.svg")} width="35px" /> - {item.predictions_nn.angry.toFixed(3)}
+                              </b>
+                            </CardTitle>
                           </CardBody>
                         </Card>
                       </Col>
