@@ -1,11 +1,13 @@
+import time
+
 import pymongo
 from ml_tools import ML_Tools
-import numpy as np
-import cv2 as cv
 from pyspark import SparkContext
 from pyspark.ml.image import ImageSchema
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
+
+from logistic_regression.predict import predict
 
 
 def main():
@@ -25,23 +27,30 @@ def main():
         records = msg.collect()
         images = []
 
-        if len(records) != 0:
-            ml_tools = ML_Tools(model_path="checkpoint/VGG16_Hybrid_1365_20200517-042722_0.7704918032786885.hdf5")
-
         for record in records:
             img = ImageSchema.readImages(record[1])
             img = img.select('image.data').collect()
             images.append(img)
 
         if len(images) != 0:
-            preds = ml_tools.predict(images)
+            ml_tools = ML_Tools(model_path="checkpoint/VGG16_Hybrid_1365_20200517-042722_0.7704918032786885.hdf5")
+            preds_nn = ml_tools.predict(images)
+            preds_lr = predict(images,
+                               model_path="./models/LogisticRegression_model_20200524-154144_0.7325102880658436")
 
-            for i in range(len(preds)):
-                mycol.insert({"img": records[i][1], "predict": {"anger": preds[i].tolist()[0],
-                                                                "fear": preds[i].tolist()[1],
-                                                                "happy": preds[i].tolist()[2],
-                                                                "horny": preds[i].tolist()[3],
-                                                                "sad": preds[i].tolist()[4]}})
+            for i in range(len(preds_nn)):
+                mycol.insert({"img": records[i][1], "created_at": str(time.time()),
+                              "predictions_nn": {"anger": preds_nn[i].tolist()[0],
+                                                 "fear": preds_nn[i].tolist()[1],
+                                                 "happy": preds_nn[i].tolist()[2],
+                                                 "horny": preds_nn[i].tolist()[3],
+                                                 "sad": preds_nn[i].tolist()[4]},
+                              "predictions_lr": {"anger": preds_lr[i].tolist()[0],
+                                                 "fear": preds_lr[i].tolist()[1],
+                                                 "happy": preds_lr[i].tolist()[2],
+                                                 "horny": preds_lr[i].tolist()[3],
+                                                 "sad": preds_lr[i].tolist()[4]
+                                                 }})
 
     kvs.foreachRDD(handler)
     ssc.start()
