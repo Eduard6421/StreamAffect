@@ -19,18 +19,17 @@ function ImageUpload(props) {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
-    console.log(e.target.files);
-    reader.onload = () => {
-      //console.log(reader.result);
 
-      console.log(reader.result);
+    reader.onload = (evt) => {
 
-      localStorage['image'] = reader.result;
+      var req = new XMLHttpRequest();
+      req.open("POST","http://84.117.81.51:5000/upload", true);
+      req.send(evt.target.result)
 
       setFile(file);
-      setImagePreviewUrl(reader.result);
+      setImagePreviewUrl(evt.target.result);
     };
-    // reader.readAsDataURL(file);
+
     reader.readAsArrayBuffer(file);
   };
 
@@ -56,7 +55,7 @@ function ImageUpload(props) {
             outline
             onClick={handleClick}
           >
-            {props.avatar ? "Add Photo" : "Select image"}
+            {props.avatar ? "Add Photo" : "Upload image"}
           </Button>
         ) : (
           <span>

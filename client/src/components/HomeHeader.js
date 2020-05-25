@@ -10,11 +10,11 @@ import ImageUpload from "components/ImageUpload.js";
 import { predictionsService } from "services/predictions.service";
 
 class HomeHeader extends React.Component {
-  submitImage() {
-    var image = localStorage["image"];
+  // submitImage() {
+  //   var image = localStorage["image"];
 
-    predictionsService.upload(image);
-  }
+  //   predictionsService.upload(image);
+  // }
 
   render() {
     return (
@@ -44,7 +44,7 @@ class HomeHeader extends React.Component {
                 <Col md="3" sm="2"></Col>
               </Row>
               <br />
-              <Row>
+              {/* <Row>
                 <Col md="3" sm="3"></Col>
                 <Col md="6" sm="6">
                   <Button
@@ -58,7 +58,7 @@ class HomeHeader extends React.Component {
                   </Button>
                 </Col>
                 <Col md="3" sm="3"></Col>
-              </Row>
+              </Row> */}
             </Container>
           </div>
           <div
