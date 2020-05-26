@@ -30,24 +30,44 @@ class PredictionsList extends React.Component {
     this.state = {
       isFetching: false,
       data: [],
+      ids: [],
     };
   }
 
   componentDidMount() {
+
     this.getAllPredictions();
+    this.getAllIds();
+
+    //setTimeout(this.getAllPredictionsInterval, 5000);
+  }
+
+  getAllPredictionsInterval = () => {
+    this.getAllPredictions();
+  }
+
+  getAllIds() {
+    this.setState({ isFetching: true });
+
+    predictionsService.getAllIds().then((data) => {
+      console.log(data);
+
+      this.setState({ ids: data });
+    });
+
+    this.setState({ isFetching: false });
   }
 
   getAllPredictions() {
     this.setState({ isFetching: true });
 
     predictionsService.getAll().then((data) => {
-      console.log(data);
-
       this.setState({ data: data });
     });
 
     this.setState({ isFetching: false });
   }
+
 
   render() {
     return (
@@ -56,7 +76,7 @@ class PredictionsList extends React.Component {
           <Container>
             <Col className="ml-auto mr-auto" md="8">
               <div className="section-description text-center">
-                <h2 className="title">Latest Predictions</h2>
+                <h2 className="title">Latest 50 Predictions</h2>
 
                 <h4>
                   <b>
@@ -82,11 +102,12 @@ class PredictionsList extends React.Component {
                           <CardBody className="text-center">
                             <CardTitle tag="h5">
                               <b>
+                                Weak prediction:
                                 {(() => {
                                   if (item.predictions_lr.anger == 1) {
                                     return <p>ANGER</p>;
                                   } else if (item.predictions_lr.fear == 1) {
-                                    return <p>ANGER</p>;
+                                    return <p>FEAR</p>;
                                   } else if (item.predictions_lr.happy == 1) {
                                     return <p>HAPPY</p>;
                                   } else if (item.predictions_lr.horny == 1) {
@@ -95,6 +116,8 @@ class PredictionsList extends React.Component {
                                       return <p>SAD</p>
                                   }
                                 })()}
+                                <br />
+                                Strong prediction:
                                 <br />
                                 <img
                                   src={require("assets/icons/happiness.svg")}

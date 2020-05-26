@@ -15,21 +15,27 @@ function ImageUpload(props) {
     props.avatar ? defaultAvatar : defaultImage
   );
   const fileInput = React.createRef();
-  const handleImageChange = e => {
+  const handleImageChange = (e) => {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
 
     reader.onload = (evt) => {
-
       var req = new XMLHttpRequest();
-      req.open("POST","http://84.117.81.51:5000/upload", true);
-      req.send(evt.target.result)
+      req.open("POST", "http://84.117.81.51:5000/upload", true);
+      req.send(evt.target.result);
 
-      setFile(file);
-      setImagePreviewUrl(evt.target.result);
+      let reader1 = new FileReader();
+      reader1.readAsDataURL(file);
+      reader1.onload = () => {
+        setFile(reader1.result);
+        setImagePreviewUrl(reader1.result);
+      };
 
-      document.getElementById("inputImage").remove();
+      //setFile(file);
+      //setImagePreviewUrl(file);
+
+      //document.getElementById("inputImage").remove();
     };
 
     reader.readAsArrayBuffer(file);
@@ -38,6 +44,7 @@ function ImageUpload(props) {
   const handleClick = () => {
     fileInput.current.click();
   };
+
   const handleRemove = () => {
     setFile(null);
     setImagePreviewUrl(props.avatar ? defaultAvatar : defaultImage);
@@ -61,23 +68,28 @@ function ImageUpload(props) {
           </Button>
         ) : (
           <span>
+            <div>
+              <br />
+              <h3>Done!</h3>
+              <br />
+            </div>
             <Button
               className="btn-round"
               outline
               color="default"
               onClick={handleClick}
             >
-              Change
+              Try again
             </Button>
             {props.avatar ? <br /> : null}
-            <Button
+            {/* <Button
               color="danger"
               className="btn-round btn-link"
               onClick={handleRemove}
             >
               <i className="fa fa-times" />
-              Remove
-            </Button>
+              Try again
+            </Button> */}
           </span>
         )}
       </div>
@@ -86,7 +98,7 @@ function ImageUpload(props) {
 }
 
 ImageUpload.propTypes = {
-  avatar: PropTypes.bool
+  avatar: PropTypes.bool,
 };
 
 export default ImageUpload;

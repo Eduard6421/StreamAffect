@@ -6,11 +6,10 @@ const apiUrl = "http://84.117.81.51:5000";
 export const predictionsService = {
   upload,
   getAll,
+  getAllIds,
 };
 
-
 function upload(image) {
-
   console.log(image);
 
   // const requestOptions = {
@@ -26,10 +25,32 @@ function upload(image) {
   //     return response;
   //   });
 
-    var req = new XMLHttpRequest();
+  var req = new XMLHttpRequest();
 
-    req.open("POST", "http://84.117.81.51:5000/upload", true);
-    req.send(image);
+  req.open("POST", "http://84.117.81.51:5000/upload", true);
+  req.send(image);
+}
+
+function getAllIds() {
+  const requestOptions = {
+    method: "GET",
+  };
+
+  return fetch(`${apiUrl}/get_ids?num_images=50`, requestOptions)
+    .then(handleResponse)
+    .then((data) => {
+      data = data.sort(function (a, b) {
+        return (
+          parseInt(b.created_at.split(".")[0]) -
+          parseInt(a.created_at.split(".")[0])
+        );
+      });
+
+      return data;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 }
 
 function getAll() {
@@ -37,16 +58,19 @@ function getAll() {
     method: "GET",
   };
 
-  return fetch(`${apiUrl}/list`, requestOptions)
-    .then((handleResponse))
+  return fetch(`${apiUrl}/list?num_images=50`, requestOptions)
+    .then(handleResponse)
     .then((data) => {
-      
-      data = data.sort(function(a, b) {
-        return parseInt(b.created_at.split(".")[0]) - parseInt(a.created_at.split(".")[0]) ;
-      })
+      data = data.sort(function (a, b) {
+        return (
+          parseInt(b.created_at.split(".")[0]) -
+          parseInt(a.created_at.split(".")[0])
+        );
+      });
 
       return data;
-    }).catch(e => {
+    })
+    .catch((e) => {
       console.log(e);
-  });
+    });
 }
