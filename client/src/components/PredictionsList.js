@@ -40,7 +40,7 @@ class PredictionsList extends React.Component {
 
     //this.updateContent();
 
-    setInterval(this.getAllPredictionsInterval, 5000);
+    setInterval(this.getAllPredictionsInterval, 15000);
   }
 
   getAllPredictionsInterval = () => {
