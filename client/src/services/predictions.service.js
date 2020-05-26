@@ -7,6 +7,7 @@ export const predictionsService = {
   upload,
   getAll,
   getAllIds,
+  getImage,
 };
 
 function upload(image) {
@@ -73,4 +74,19 @@ function getAll() {
     .catch((e) => {
       console.log(e);
     });
+}
+
+function getImage(imageId) {
+  const requestOptions = {
+    method: "GET",
+  };
+
+  return fetch(`${apiUrl}/get_image?image_id=${imageId}`, requestOptions)
+  .then(handleResponse)
+  .then((data) => {
+    return data;
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 }

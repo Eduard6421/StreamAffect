@@ -38,6 +38,8 @@ class PredictionsList extends React.Component {
     this.getAllPredictions();
     this.getAllIds();
 
+    this.updateContent();
+
     //setTimeout(this.getAllPredictionsInterval, 5000);
   }
 
@@ -45,11 +47,77 @@ class PredictionsList extends React.Component {
     this.getAllPredictions();
   };
 
+  updateContent() {
+    var newIds = [];
+    var oldIds = [];
+    
+    var newData = [];
+    var oldData = [];
+
+    if (localStorage.getItem("ids") == null) {
+      localStorage.setItem("ids", []);
+      localStorage.setItem("data", []);
+    }
+
+    oldIds = localStorage.getItem("ids");
+    oldData = localStorage.getItem("data");
+
+    predictionsService.getAllIds().then((data) => {
+      newIds = data;
+
+
+      var toBeRetrieved = [];
+      var alreadyRetrieved = [];
+
+
+      // Id-uri noi
+      for (var i=0; i<newIds.length; i++) {
+        var found = false;
+
+        for (var j=0; j<oldIds.length; j++) {
+          if (newIds[i]["img_name"] == oldIds[j]["img_name"])
+            found = true;
+        }
+        
+        if (found == false) {
+          toBeRetrieved.push(newIds[i]);
+
+          predictionsService.getImage(newIds[i]["img_name"].split(".")).then((data) => {
+
+            newData.push(data);
+          });
+        }   
+      }
+
+      // Id-uri de pastrat & imagini
+      for (var i=0; i<oldIds.length; i++) {
+        var found = false;
+
+        for (var j=0; j<newIds.length; j++) {
+          if (oldIds[i]["img_name"] == newIds[j]["img_name"])
+            found = true;
+        }
+        
+        if (found == true) {
+          alreadyRetrieved.push(newIds[i]);
+          for (var k=0; k<oldData.length; k++) {
+            if (oldIds[i]["img_name"] == oldData[k]["img_name"]) {
+              newData.push(oldData[k]);
+            }
+          }
+        }
+      }
+
+      localStorage.setItem("ids", toBeRetrieved.concat(alreadyRetrieved));
+      localStorage.setItem("data", newData);
+
+    });
+  }
+
   getAllIds() {
     this.setState({ isFetching: true });
 
     predictionsService.getAllIds().then((data) => {
-      console.log(data);
 
       this.setState({ ids: data });
     });
@@ -89,7 +157,6 @@ class PredictionsList extends React.Component {
               {this.state.isFetching
                 ? ""
                 : this.state.data.map(function (item, i) {
-                    console.log(item);
 
                     var imageSrc = "data:image/jpeg;base64," + item.image;
 
