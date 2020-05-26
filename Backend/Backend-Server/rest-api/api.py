@@ -165,9 +165,9 @@ def list_images():
 		img_name = path.replace('inference/', '')
 
 		if not img_name in memory:
-			if not os.path.exists(img_name):
+			if not os.path.exists('cdn/'+img_name):
 				file = hdfs.read_file(path)
-				f = open(img_name, 'wb')
+				f = open('cdn'+img_name, 'wb')
 				f.write(file)
 				f.close()
 			print('getting byte img')
