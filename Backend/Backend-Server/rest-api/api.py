@@ -56,7 +56,7 @@ predictions = db["predictions"] #Select the collection name
 images = db["fs.files"]
 fs = gridfs.GridFS(db)
 
-
+memory = {}
 
 def write_image(image_path, image, sentiment=None):
 
@@ -147,8 +147,12 @@ def upload_pic():
 @cross_origin()
 def list_images():
 
+	print('Recieved request')
+
 
 	predictions_list = predictions.find()
+	print('Mongo request finished')
+	
 	res_arr = []
 	for p in predictions_list:
 
@@ -157,24 +161,30 @@ def list_images():
 		path = p['img']
 		path = path.replace('hdfs://localhost:9000/', '')
 
-		file = hdfs.read_file(path)
 
 		img_name = path.replace('inference/', '')
 
-		if not os.path.exists(img_name):
-
-			f = open(img_name, 'wb')
-			f.write(file)
-			f.close()
-
-		img = get_byte_image(img_name)
-
+		if not img_name in memory:
+			if not os.path.exists(img_name):
+				file = hdfs.read_file(path)
+				f = open(img_name, 'wb')
+				f.write(file)
+				f.close()
+			print('getting byte img')
+			img = get_byte_image(img_name)
+			memory[img_name] = img
+			print('did byte img')
+		else:
+			img = memory[img_name]
+		
 		data['image'] = img
 		data['created_at'] = p['created_at']
 		data['predictions_nn'] = p['predictions_nn']
 		data['predictions_lr'] = p['predictions_lr']
 
 		res_arr.append(data)
+
+	print('returning ')
 
 	return jsonify(res_arr)
 
