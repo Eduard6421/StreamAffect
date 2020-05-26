@@ -35,8 +35,7 @@ def main():
         if len(images) != 0:
             ml_tools = ML_Tools(model_path="checkpoint/VGG16_Hybrid_1365_20200517-042722_0.7704918032786885.hdf5")
             preds_nn = ml_tools.predict(images)
-            preds_lr = predict(images,
-                               model_path="./models/LogisticRegression_model_20200524-154144_0.7325102880658436")
+            preds_lr = predict(images, model_path="./models/LogisticRegression_model_vgg_scene_22420200526-124611_0.8001998001998002")
 
             for i in range(len(preds_nn)):
                 mycol.insert({"img": records[i][1], "created_at": str(time.time()),
@@ -50,7 +49,8 @@ def main():
                                                  "happy": preds_lr[i].tolist()[2],
                                                  "horny": preds_lr[i].tolist()[3],
                                                  "sad": preds_lr[i].tolist()[4]
-                                                 }})
+                                                 }
+                              })
 
     kvs.foreachRDD(handler)
     ssc.start()
