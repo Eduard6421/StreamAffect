@@ -143,14 +143,93 @@ def upload_pic():
 
 
 
+
+@app.route('/get_ids', methods=['GET'])
+@cross_origin()
+def get_ids():
+	predictions_list = predictions.find().sort({created_at: 0})
+	
+	res_arr = []
+	for p in predictions_list:
+
+		data['image'] = img
+		data['created_at'] = p['created_at']
+
+		res_arr.append(data)
+
+	print('returning ')
+
+	return jsonify(res_arr)
+
+
+@app.route('/get_image', methods=['GET'])
+@cross_origin()
+def get_image():
+
+	print('Recieved request')
+
+	image_id = request.args.get('image_id')
+
+	composed_path = 'hdfs://localhost:9000/inference/' + image_id + '.jpg'
+
+	predictions_list = predictions.find({'img' : composed_path})
+	print('Mongo request finished')
+	
+	res_arr = []
+	for p in predictions_list:
+
+		data = {}
+
+		path = p['img']
+		path = path.replace('hdfs://localhost:9000/', '')
+
+
+		img_name = path.replace('inference/', '')
+
+		if not img_name in memory:
+			if not os.path.exists('cdn/'+img_name):
+				file = hdfs.read_file(path)
+				f = open('cdn'+img_name, 'wb')
+				f.write(file)
+				f.close()
+			print('getting byte img')
+			img = get_byte_image(img_name)
+			memory[img_name] = img
+			print('did byte img')
+		else:
+			img = memory[img_name]
+		
+		data['image'] = img
+		data['created_at'] = p['created_at']
+		data['predictions_nn'] = p['predictions_nn']
+		data['predictions_lr'] = p['predictions_lr']
+
+		res_arr.append(data)
+
+	print('returning ')
+
+	return jsonify(res_arr)
+
+
+
+
+
 @app.route('/list', methods=['GET'])
 @cross_origin()
 def list_images():
 
 	print('Recieved request')
 
+	num_images = request.args.get('num_images')
 
-	predictions_list = predictions.find()
+
+	if(num_images is not None and num_images.isnumeric()):
+		num_images = int(num_images)
+	else:
+		raise Exception('n-ai pus argumentu bn')
+
+
+	predictions_list = predictions.find().sort({created_at: 0}).limit(num_images)
 	print('Mongo request finished')
 	
 	res_arr = []
