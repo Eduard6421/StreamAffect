@@ -35,7 +35,6 @@ class PredictionsList extends React.Component {
   }
 
   componentDidMount() {
-
     this.getAllPredictions();
     this.getAllIds();
 
@@ -44,7 +43,7 @@ class PredictionsList extends React.Component {
 
   getAllPredictionsInterval = () => {
     this.getAllPredictions();
-  }
+  };
 
   getAllIds() {
     this.setState({ isFetching: true });
@@ -67,7 +66,6 @@ class PredictionsList extends React.Component {
 
     this.setState({ isFetching: false });
   }
-
 
   render() {
     return (
@@ -102,20 +100,46 @@ class PredictionsList extends React.Component {
                           <CardBody className="text-center">
                             <CardTitle tag="h5">
                               <b>
-                                Weak prediction:
+                                Weak prediction: {"  "}
                                 {(() => {
                                   if (item.predictions_lr.anger == 1) {
-                                    return <p>ANGER</p>;
+                                    return (
+                                      <img
+                                        src={require("assets/icons/angry.svg")}
+                                        width="35px"
+                                      />
+                                    );
                                   } else if (item.predictions_lr.fear == 1) {
-                                    return <p>FEAR</p>;
+                                    return (
+                                      <img
+                                        src={require("assets/icons/scared.svg")}
+                                        width="35px"
+                                      />
+                                    );
                                   } else if (item.predictions_lr.happy == 1) {
-                                    return <p>HAPPY</p>;
+                                    return (
+                                      <img
+                                        src={require("assets/icons/happiness.svg")}
+                                        width="35px"
+                                      />
+                                    );
                                   } else if (item.predictions_lr.horny == 1) {
-                                    return <p>EXCITED</p>;
+                                    return (
+                                      <img
+                                        src={require("assets/icons/excited.svg")}
+                                        width="35px"
+                                      />
+                                    );
                                   } else if (item.predictions_lr.sad == 1) {
-                                      return <p>SAD</p>
+                                    return (
+                                      <img
+                                        src={require("assets/icons/sad.svg")}
+                                        width="35px"
+                                      />
+                                    );
                                   }
                                 })()}
+                                <br />
                                 <br />
                                 Strong prediction:
                                 <br />
