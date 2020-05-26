@@ -1,3 +1,6 @@
+import os
+import sys
+
 import cv2 as cv
 from keras.applications.vgg16 import preprocess_input
 from keras.preprocessing.image import img_to_array, load_img
@@ -7,6 +10,10 @@ from pyspark.sql.types import StructType, StructField
 import numpy as np
 from sparkdl import KerasImageFileTransformer
 from pyspark.ml.classification import OneVsRestModel
+
+sys.path.append(os.getcwd() + '/.')
+from classification_models.keras import Classifiers
+_, preprocess_input_vgg_scene = Classifiers.get('vgg16')
 
 
 def load_data_predict(image):
@@ -19,18 +26,34 @@ def load_data_predict(image):
 
     return preprocess_input(image)
 
+def load_data_predict_vgg_scene_224(image):
+    img = np.array(image)
+    img = np.reshape(img, (416, 416, 3))
+    img = np.array(img, np.uint8)
+    img = cv.resize(img, (224, 224))
+    img = np.array(img, dtype=np.float32)
+    image = np.expand_dims(img, axis=0)
+
+    return preprocess_input_vgg_scene(image)
+
 
 def predict(data, model_path):
     logistic_model = OneVsRestModel.load(model_path)
     data = np.reshape(data, (-1, 416, 416, 3))
 
-    print(data.shape)
-    print("*" * 100)
-
-    transformer = KerasImageFileTransformer(inputCol="image", outputCol="features",
+    #TRANSFORM for vgg16
+    transformer1 = KerasImageFileTransformer(inputCol="image", outputCol="features",
                                             modelFile='./models/vgg16.hdf5',
                                             imageLoader=load_data_predict,
                                             outputMode="vector")
+
+    #TRANSFORM for vgg16_scene
+    transformer2 = KerasImageFileTransformer(inputCol="image", outputCol="features",
+                                            modelFile='./models/vgg_scene_224.hdf5',
+                                            imageLoader=load_data_predict_vgg_scene_224,
+                                            outputMode="vector")
+
+    transformer = transformer2
 
     schema = StructType([
         StructField("features", VectorUDT(), True)])

@@ -12,6 +12,8 @@ base_folder_features          = './dataset/features'
 base_folder_features_resnet   = './dataset/features_resnet'
 base_folder_features_vgg_scene = './dataset/features_vgg_scene'
 base_folder_features_vgg_scene_224 = './dataset/features_vgg_scene_224'
+base_folder_features_pca = './dataset/features_pca'
+base_folder_features_pca = './dataset/features_pca_2'
 
 #CHANGE BASE FOLDER TO SELECT FEATURES TO TRAIN
 features = glob.glob(os.path.join(base_folder_features_vgg_scene_224, "part*"))
@@ -27,9 +29,10 @@ def train_model(input_data):
     train = splits[0]
     test = splits[1]
     train.show()
+    test.show()
 
     # instantiate the base classifier.
-    lr = LogisticRegression(maxIter=10, tol=1E-5, regParam=0.0, fitIntercept=True)
+    lr = LogisticRegression(maxIter=15, tol=1E-10, regParam=0.75, fitIntercept=True)
 
     # instantiate the One Vs Rest Classifier.
     ovr = OneVsRest(classifier=lr)
@@ -43,6 +46,7 @@ def train_model(input_data):
     prediction_and_labels = predictions.select(['prediction', 'label']).rdd
     metrics = MulticlassMetrics(prediction_and_labels)
     accuracy = metrics.accuracy
+    print(metrics.confusionMatrix)
 
     # save model
     model_type = 'vgg_scene_224'
@@ -54,28 +58,3 @@ def train_model(input_data):
 
 file, model = train_model(inputData)
 print(file)
-
-#max_iter  tol    regParam
-# 10       1E-5   0.0     => 0.70
-# 10       1E-7   0.0     => 0.72
-
-
-# 10       1E-5   0.15     => 0.73
-# 10       1E-7   0.15     => 0.71
-
-#resnet
-# 10       1E-5   0.0     => 0.73
-# 10       1E-7   0.0     => 0.73
-
-# 10       1E-5   0.15     => 0.72
-# 10       1E-7   0.15     => 0.77
-
-#vgg scene
-# 10       1E-5   0.0     => 0.78
-# 10       1E-7   0.0     => 0.76
-
-# 10       1E-5   0.15     => 0.76
-# 10       1E-7   0.15     => 0.77
-
-#vgg scene 224
-
