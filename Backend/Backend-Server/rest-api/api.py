@@ -147,7 +147,18 @@ def upload_pic():
 @app.route('/get_ids', methods=['GET'])
 @cross_origin()
 def get_ids():
-	predictions_list = predictions.find().sort({created_at: 0})
+	num_images = request.args.get('num_images')
+
+	if(num_images is not None and num_images.isnumeric()):
+		num_images = int(num_images)
+		if(num_images == -1):
+			predictions_list = predictions.find().sort({created_at: 0})
+		else:
+			predictions_list = predictions.find().sort({created_at: 0}).limit(num_images)
+
+	else:
+		raise Exception('n-ai pus argumentu bn')
+
 	
 	res_arr = []
 	for p in predictions_list:
