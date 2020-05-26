@@ -38,13 +38,16 @@ class PredictionsList extends React.Component {
     this.getAllPredictions();
     this.getAllIds();
 
-    this.updateContent();
+    //this.updateContent();
 
-    //setTimeout(this.getAllPredictionsInterval, 5000);
+    setInterval(this.getAllPredictionsInterval, 5000);
   }
 
   getAllPredictionsInterval = () => {
     this.getAllPredictions();
+    this.updateContent();
+
+    console.log("Update finished");
   };
 
   updateContent() {
