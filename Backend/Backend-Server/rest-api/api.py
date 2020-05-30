@@ -34,7 +34,7 @@ HDFS_HOST = '188.26.164.67'
 HDFS_PORT = '9870'
 HDFS_USERNAME = 'adria'
 
-KAFKA_HOST = '84.117.81.51'
+KAFKA_HOST = '31.5.104.149'
 KAFKA_PORT = '9092'
 
 producer = KafkaProducer(bootstrap_servers=KAFKA_HOST + ':' + KAFKA_PORT)
@@ -129,7 +129,7 @@ def upload_pic():
 	filename = randomString() + '.jpg'
 	
 
-	cv.imwrite(filename,img)
+	cv.imwrite('cdn/'+ filename,img)
 	image_path = 'inference/' + filename
 	write_image(image_path, img)
 
@@ -152,9 +152,9 @@ def get_ids():
 	if(num_images is not None and num_images.isnumeric()):
 		num_images = int(num_images)
 		if(num_images == -1):
-			predictions_list = predictions.find().sort({created_at: 0})
+			predictions_list = predictions.find().sort("created_at",-1)
 		else:
-			predictions_list = predictions.find().sort({created_at: 0}).limit(num_images)
+			predictions_list = predictions.find().sort("created_at",-1).limit(num_images)
 
 	else:
 		raise Exception('n-ai pus argumentu bn')
@@ -163,7 +163,13 @@ def get_ids():
 	res_arr = []
 	for p in predictions_list:
 
-		data['image'] = img
+		data = {}
+
+		path = p['img']
+		path = path.replace('hdfs://localhost:9000/', '')
+		img_name = path.replace('inference/', '')
+
+		data['img_name'] = img_name
 		data['created_at'] = p['created_at']
 
 		res_arr.append(data)
@@ -204,13 +210,14 @@ def get_image():
 				f.write(file)
 				f.close()
 			print('getting byte img')
-			img = get_byte_image(img_name)
+			img = get_byte_image('cdn/'+img_name)
 			memory[img_name] = img
 			print('did byte img')
 		else:
 			img = memory[img_name]
 		
 		data['image'] = img
+		data['img_name'] = img_name
 		data['created_at'] = p['created_at']
 		data['predictions_nn'] = p['predictions_nn']
 		data['predictions_lr'] = p['predictions_lr']
@@ -237,9 +244,9 @@ def list_images():
 	if(num_images is not None and num_images.isnumeric()):
 		num_images = int(num_images)
 		if(num_images == -1):
-			predictions_list = predictions.find().sort({created_at: 0})
+			predictions_list = predictions.find().sort("created_at",-1)
 		else:
-			predictions_list = predictions.find().sort({created_at: 0}).limit(num_images)
+			predictions_list = predictions.find().sort("created_at",-1).limit(num_images)
 
 	else:
 		raise Exception('n-ai pus argumentu bn')
@@ -261,17 +268,18 @@ def list_images():
 		if not img_name in memory:
 			if not os.path.exists('cdn/'+img_name):
 				file = hdfs.read_file(path)
-				f = open('cdn'+img_name, 'wb')
+				f = open('cdn/'+img_name, 'wb')
 				f.write(file)
 				f.close()
 			print('getting byte img')
-			img = get_byte_image(img_name)
+			img = get_byte_image('cdn/'+img_name)
 			memory[img_name] = img
 			print('did byte img')
 		else:
 			img = memory[img_name]
 		
 		data['image'] = img
+		data['img_name'] = img_name
 		data['created_at'] = p['created_at']
 		data['predictions_nn'] = p['predictions_nn']
 		data['predictions_lr'] = p['predictions_lr']
