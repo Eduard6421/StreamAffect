@@ -1,2 +1,2 @@
-# Dotano
-Big Dota Match Prediction Webapp
+# StreamAffect
+Evoked Sentiment Webapp developed using react - flask - spark - sparkML - mongodb
